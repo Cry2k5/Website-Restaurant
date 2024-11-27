@@ -35,11 +35,14 @@
     <link rel="stylesheet" type="text/css" href="css/main.css">
     <link rel="stylesheet" type="text/css" href="css/customize.css">
 
+
+
     <!--===============================================================================================-->
 </head>
 <body @if($bodyClass) class="{{$bodyClass}}" @endif>
 
 {{$slot}}
+
 <!-- Back to top -->
 <div class="btn-back-to-top bg0-hov" id="myBtn">
 		<span class="symbol-btn-back-to-top">
@@ -64,6 +67,7 @@
         </div>
     </div>
 </div>
+
 
 
 
@@ -92,7 +96,12 @@
 <!--===============================================================================================-->
 <script type="text/javascript" src="vendor/lightbox2/js/lightbox.min.js"></script>
 <!--===============================================================================================-->
+<script type="text/javascript" src="vendor/isotope/isotope.pkgd.min.js"></script>
+<!--===============================================================================================-->
 <script src="js/main.js"></script>
+
+{{--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAKFWBqlKAGCeS1rMVoaNlwyayu0e0YRes"></script>--}}
+{{--<script src="js/map-custom.js"></script>--}}
 
 </body>
 </html>

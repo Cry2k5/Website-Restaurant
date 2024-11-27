@@ -1,91 +1,7 @@
 <x-app-layout title="About">
 
-    <!-- Sidebar -->
-    <aside class="sidebar trans-0-4">
-        <!-- Button Hide sidebar -->
-        <button class="btn-hide-sidebar ti-close color0-hov trans-0-4"></button>
+        <x-menu-sidebar></x-menu-sidebar>
 
-        <!-- - -->
-        <ul class="menu-sidebar p-t-95 p-b-70">
-            <li class="t-center m-b-13">
-                <a href="{{route('home')}}" class="txt19">Home</a>
-            </li>
-
-            <li class="t-center m-b-13">
-                <a href="{{route('menu')}}" class="txt19">Menu</a>
-            </li>
-
-            <li class="t-center m-b-13">
-                <a href="{{route('gallery')}}" class="txt19">Gallery</a>
-            </li>
-
-            <li class="t-center m-b-13">
-                <a href="{{route('about')}}" class="txt19">About</a>
-            </li>
-
-            <li class="t-center m-b-13">
-                <a href="{{route('blog')}}" class="txt19">Blog</a>
-            </li>
-
-            <li class="t-center m-b-33">
-                <a href="{{route('contact')}}" class="txt19">Contact</a>
-            </li>
-
-            <li class="t-center">
-                <!-- Button3 -->
-                <a href="{{route('reservation')}}" class="btn3 flex-c-m size13 txt11 trans-0-4 m-l-r-auto">
-                    Reservation
-                </a>
-            </li>
-        </ul>
-
-        <!-- - -->
-        <div class="gallery-sidebar t-center p-l-60 p-r-60 p-b-40">
-            <!-- - -->
-            <h4 class="txt20 m-b-33">
-                Gallery
-            </h4>
-
-            <!-- Gallery -->
-            <div class="wrap-gallery-sidebar flex-w">
-                <a class="item-gallery-sidebar wrap-pic-w" href="images/photo-gallery-01.jpg" data-lightbox="gallery-footer">
-                    <img src="images/photo-gallery-thumb-01.jpg" alt="GALLERY">
-                </a>
-
-                <a class="item-gallery-sidebar wrap-pic-w" href="images/photo-gallery-02.jpg" data-lightbox="gallery-footer">
-                    <img src="images/photo-gallery-thumb-02.jpg" alt="GALLERY">
-                </a>
-
-                <a class="item-gallery-sidebar wrap-pic-w" href="images/photo-gallery-03.jpg" data-lightbox="gallery-footer">
-                    <img src="images/photo-gallery-thumb-03.jpg" alt="GALLERY">
-                </a>
-
-                <a class="item-gallery-sidebar wrap-pic-w" href="images/photo-gallery-05.jpg" data-lightbox="gallery-footer">
-                    <img src="images/photo-gallery-thumb-05.jpg" alt="GALLERY">
-                </a>
-
-                <a class="item-gallery-sidebar wrap-pic-w" href="images/photo-gallery-06.jpg" data-lightbox="gallery-footer">
-                    <img src="images/photo-gallery-thumb-06.jpg" alt="GALLERY">
-                </a>
-
-                <a class="item-gallery-sidebar wrap-pic-w" href="images/photo-gallery-07.jpg" data-lightbox="gallery-footer">
-                    <img src="images/photo-gallery-thumb-07.jpg" alt="GALLERY">
-                </a>
-
-                <a class="item-gallery-sidebar wrap-pic-w" href="images/photo-gallery-09.jpg" data-lightbox="gallery-footer">
-                    <img src="images/photo-gallery-thumb-09.jpg" alt="GALLERY">
-                </a>
-
-                <a class="item-gallery-sidebar wrap-pic-w" href="images/photo-gallery-10.jpg" data-lightbox="gallery-footer">
-                    <img src="images/photo-gallery-thumb-10.jpg" alt="GALLERY">
-                </a>
-
-                <a class="item-gallery-sidebar wrap-pic-w" href="images/photo-gallery-11.jpg" data-lightbox="gallery-footer">
-                    <img src="images/photo-gallery-thumb-11.jpg" alt="GALLERY">
-                </a>
-            </div>
-        </div>
-    </aside>
     <!-- Title Page -->
     <section class="bg-title-page flex-c-m p-t-160 p-b-80 p-l-15 p-r-15" style="background-image: url(images/bg-title-page-03.jpg);">
         <h2 class="tit6 t-center">
@@ -97,7 +13,7 @@
     <!-- Our Story -->
     <section class="bg2-pattern p-t-116 p-b-110 t-center p-l-15 p-r-15">
 		<span class="tit2 t-center">
-			Italian Restaurant
+			Vietnamese Restaurant
 		</span>
 
         <h3 class="tit3 t-center m-b-35 m-t-5">
@@ -105,8 +21,7 @@
         </h3>
 
         <p class="t-center size32 m-l-r-auto">
-            Fusce at risus eget mi auctor pulvinar. Suspendisse maximus venenatis pretium. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aliquam purus purus, lacinia a scelerisque in, luctus vel felis. Donec odio diam, dignissim a efficitur at, efficitur et est. Pellentesque semper est ut pulvinar ullamcorper. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nulla et leo accumsan, egestas velit ac, fringilla tortor. Sed varius justo sed luctus mattis.
-        </p>
+            Our journey began with a passion for sharing the rich culinary traditions of Vietnam with the world. Inspired by the vibrant street food culture and the comforting dishes that have been cherished for generations, we opened our restaurant to offer an authentic taste of Vietnam right here. Each dish tells a story – from the bustling markets of Hanoi to the peaceful streets of Saigon – and we bring these stories to life with every meal we serve. Our founders, deeply rooted in Vietnamese heritage, wanted to create a place where people could experience the flavors of home, no matter where they came from. With a focus on fresh ingredients, traditional recipes, and a warm, welcoming atmosphere, our restaurant is more than just a place to eat – it’s a celebration of Vietnamese culture, community, and the love of food.        </p>
     </section>
 
 

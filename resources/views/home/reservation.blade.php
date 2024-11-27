@@ -1,91 +1,6 @@
 <x-app-layout title="Reservation">
-
     <!-- Sidebar -->
-    <aside class="sidebar trans-0-4">
-        <!-- Button Hide sidebar -->
-        <button class="btn-hide-sidebar ti-close color0-hov trans-0-4"></button>
-
-        <!-- - -->
-        <ul class="menu-sidebar p-t-95 p-b-70">
-            <li class="t-center m-b-13">
-                <a href="{{route('home')}}" class="txt19">Home</a>
-            </li>
-
-            <li class="t-center m-b-13">
-                <a href="{{route('menu')}}" class="txt19">Menu</a>
-            </li>
-
-            <li class="t-center m-b-13">
-                <a href="{{route('gallery')}}" class="txt19">Gallery</a>
-            </li>
-
-            <li class="t-center m-b-13">
-                <a href="{{route('about')}}" class="txt19">About</a>
-            </li>
-
-            <li class="t-center m-b-13">
-                <a href="{{route('blog')}}" class="txt19">Blog</a>
-            </li>
-
-            <li class="t-center m-b-33">
-                <a href="{{route('contact')}}" class="txt19">Contact</a>
-            </li>
-
-            <li class="t-center">
-                <!-- Button3 -->
-                <a href="{{route('reservation')}}" class="btn3 flex-c-m size13 txt11 trans-0-4 m-l-r-auto">
-                    Reservation
-                </a>
-            </li>
-        </ul>
-
-        <!-- - -->
-        <div class="gallery-sidebar t-center p-l-60 p-r-60 p-b-40">
-            <!-- - -->
-            <h4 class="txt20 m-b-33">
-                Gallery
-            </h4>
-
-            <!-- Gallery -->
-            <div class="wrap-gallery-sidebar flex-w">
-                <a class="item-gallery-sidebar wrap-pic-w" href="images/photo-gallery-01.jpg" data-lightbox="gallery-footer">
-                    <img src="images/photo-gallery-thumb-01.jpg" alt="GALLERY">
-                </a>
-
-                <a class="item-gallery-sidebar wrap-pic-w" href="images/photo-gallery-02.jpg" data-lightbox="gallery-footer">
-                    <img src="images/photo-gallery-thumb-02.jpg" alt="GALLERY">
-                </a>
-
-                <a class="item-gallery-sidebar wrap-pic-w" href="images/photo-gallery-03.jpg" data-lightbox="gallery-footer">
-                    <img src="images/photo-gallery-thumb-03.jpg" alt="GALLERY">
-                </a>
-
-                <a class="item-gallery-sidebar wrap-pic-w" href="images/photo-gallery-05.jpg" data-lightbox="gallery-footer">
-                    <img src="images/photo-gallery-thumb-05.jpg" alt="GALLERY">
-                </a>
-
-                <a class="item-gallery-sidebar wrap-pic-w" href="images/photo-gallery-06.jpg" data-lightbox="gallery-footer">
-                    <img src="images/photo-gallery-thumb-06.jpg" alt="GALLERY">
-                </a>
-
-                <a class="item-gallery-sidebar wrap-pic-w" href="images/photo-gallery-07.jpg" data-lightbox="gallery-footer">
-                    <img src="images/photo-gallery-thumb-07.jpg" alt="GALLERY">
-                </a>
-
-                <a class="item-gallery-sidebar wrap-pic-w" href="images/photo-gallery-09.jpg" data-lightbox="gallery-footer">
-                    <img src="images/photo-gallery-thumb-09.jpg" alt="GALLERY">
-                </a>
-
-                <a class="item-gallery-sidebar wrap-pic-w" href="images/photo-gallery-10.jpg" data-lightbox="gallery-footer">
-                    <img src="images/photo-gallery-thumb-10.jpg" alt="GALLERY">
-                </a>
-
-                <a class="item-gallery-sidebar wrap-pic-w" href="images/photo-gallery-11.jpg" data-lightbox="gallery-footer">
-                    <img src="images/photo-gallery-thumb-11.jpg" alt="GALLERY">
-                </a>
-            </div>
-        </div>
-    </aside>
+    <x-menu-sidebar></x-menu-sidebar>
     <!-- Title Page -->
     <section class="bg-title-page flex-c-m p-t-160 p-b-80 p-l-15 p-r-15" style="background-image: url(images/bg-title-page-02.jpg);">
         <h2 class="tit6 t-center">
@@ -93,132 +8,109 @@
         </h2>
     </section>
 
-
     <!-- Reservation -->
     <section class="section-reservation bg1-pattern p-t-100 p-b-113">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 p-b-30">
                     <div class="t-center">
-						<span class="tit2 t-center">
-							Reservation
-						</span>
+                        <span class="tit2 t-center">
+                            Reservation
+                        </span>
 
                         <h3 class="tit3 t-center m-b-35 m-t-2">
                             Book table
                         </h3>
                     </div>
-
-                    <form class="wrap-form-reservation size22 m-l-r-auto">
-                        <div class="row">
-                            <div class="col-md-4">
-                                <!-- Date -->
-                                <span class="txt9">
-									Date
-								</span>
-
+                        @if($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+                    <form action="{{ route('home.reservations.store') }}" method="POST" class="wrap-form-reservation size22 m-l-r-auto">
+                        @csrf
+                        <div class="column">
+                            <!-- Date -->
+                            <div>
+                                <span class="txt9">Date</span>
                                 <div class="wrap-inputdate pos-relative txt10 size12 bo2 bo-rad-10 m-t-3 m-b-23">
-                                    <input class="my-calendar bo-rad-10 sizefull txt10 p-l-20" type="text" name="date">
-                                    <i class="btn-calendar fa fa-calendar ab-r-m hov-pointer m-r-18" aria-hidden="true"></i>
+                                    <input class=" bo-rad-10 sizefull txt10 p-l-20" type="date" name="reservation_date" required>
+{{--                                    <i class="btn-calendar fa fa-calendar ab-r-m hov-pointer m-r-18" aria-hidden="true"></i>--}}
                                 </div>
                             </div>
 
-                            <div class="col-md-4">
-                                <!-- Time -->
-                                <span class="txt9">
-									Time
-								</span>
-
+                            <!-- Table -->
+                            <div>
+                                <span class="txt9">Table</span>
                                 <div class="wrap-inputtime size12 bo2 bo-rad-10 m-t-3 m-b-23">
-                                    <!-- Select2 -->
-                                    <select class="selection-1" name="time">
-                                        <option>9:00</option>
-                                        <option>9:30</option>
-                                        <option>10:00</option>
-                                        <option>10:30</option>
-                                        <option>11:00</option>
-                                        <option>11:30</option>
-                                        <option>12:00</option>
-                                        <option>12:30</option>
-                                        <option>13:00</option>
-                                        <option>13:30</option>
-                                        <option>14:00</option>
-                                        <option>14:30</option>
-                                        <option>15:00</option>
-                                        <option>15:30</option>
-                                        <option>16:00</option>
-                                        <option>16:30</option>
-                                        <option>17:00</option>
-                                        <option>17:30</option>
-                                        <option>18:00</option>
+                                    <select class="selection-1" name="table_id" required>
+                                        @foreach ($tables as $table)
+                                            <option value="{{ $table->table_id }}">
+                                                For {{ $table->capacity }} people (Table ID: {{ $table->table_id }})
+                                            </option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>
 
-                            <div class="col-md-4">
-                                <!-- People -->
-                                <span class="txt9">
-									People
-								</span>
-
-                                <div class="wrap-inputpeople size12 bo2 bo-rad-10 m-t-3 m-b-23">
-                                    <!-- Select2 -->
-                                    <select class="selection-1" name="people">
-                                        <option>1 person</option>
-                                        <option>2 people</option>
-                                        <option>3 people</option>
-                                        <option>4 people</option>
-                                        <option>5 people</option>
-                                        <option>6 people</option>
-                                        <option>7 people</option>
-                                        <option>8 people</option>
-                                        <option>9 people</option>
-                                        <option>10 people</option>
-                                        <option>11 people</option>
-                                        <option>12 people</option>
+                            <!-- Time -->
+                            <div>
+                                <span class="txt9">Time</span>
+                                <div class="wrap-inputtime size12 bo2 bo-rad-10 m-t-3 m-b-23">
+                                    <select class="selection-1" name="reservation_time" required>
+                                        <option value="09:00">9:00</option>
+                                        <option value="10:30">10:30</option>
+                                        <option value="12:00">12:00</option>
+                                        <option value="13:30">13:30</option>
+                                        <option value="15:00">15:00</option>
+                                        <option value="16:30">16:30</option>
+                                        <option value="18:00">18:00</option>
+                                        <option value="19:30">19:30</option>
+                                        <option value="21:00">21:00</option>
                                     </select>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="row">
-                            <div class="col-md-4">
-                                <!-- Name -->
-                                <span class="txt9">
-									Name
-								</span>
-
+                        <div class="column">
+                            <!-- Name -->
+                            <div>
+                                <span class="txt9">Name</span>
                                 <div class="wrap-inputname size12 bo2 bo-rad-10 m-t-3 m-b-23">
-                                    <input class="bo-rad-10 sizefull txt10 p-l-20" type="text" name="name" placeholder="Name">
+                                    <input class="bo-rad-10 sizefull txt10 p-l-20" type="text" name="customer_name" placeholder="Name" required>
                                 </div>
                             </div>
 
-                            <div class="col-md-4">
-                                <!-- Phone -->
-                                <span class="txt9">
-									Phone
-								</span>
-
+                            <!-- Phone -->
+                            <div>
+                                <span class="txt9">Phone</span>
                                 <div class="wrap-inputphone size12 bo2 bo-rad-10 m-t-3 m-b-23">
-                                    <input class="bo-rad-10 sizefull txt10 p-l-20" type="text" name="phone" placeholder="Phone">
+                                    <input class="bo-rad-10 sizefull txt10 p-l-20" type="text" name="customer_phone" placeholder="Phone" required>
                                 </div>
                             </div>
 
-                            <div class="col-md-4">
-                                <!-- Email -->
-                                <span class="txt9">
-									Email
-								</span>
-
+                            <!-- Email -->
+                            <div>
+                                <span class="txt9">Email</span>
                                 <div class="wrap-inputemail size12 bo2 bo-rad-10 m-t-3 m-b-23">
-                                    <input class="bo-rad-10 sizefull txt10 p-l-20" type="text" name="email" placeholder="Email">
+                                    <input class="bo-rad-10 sizefull txt10 p-l-20" type="email" name="customer_email" placeholder="Email">
                                 </div>
                             </div>
 
+                            <!-- Description -->
+                            <div>
+                                <span class="txt9">Description</span>
+                                <div class="wrap-inputemail size12 bo2 bo-rad-10 m-t-3 m-b-23">
+                                    <input class="bo-rad-10 sizefull txt10 p-l-20" type="text" name="description" placeholder="Additional details">
+                                </div>
+                            </div>
                         </div>
 
                         <div class="wrap-btn-booking flex-c-m m-t-6">
-                            <!-- Button3 -->
                             <button type="submit" class="btn3 flex-c-m size13 txt11 trans-0-4">
                                 Book Table
                             </button>
@@ -226,37 +118,7 @@
                     </form>
                 </div>
             </div>
-
-            <div class="info-reservation flex-w p-t-80">
-                <div class="size23 w-full-md p-t-40 p-r-30 p-r-0-md">
-                    <h4 class="txt5 m-b-18">
-                        Reserve by Phone
-                    </h4>
-
-                    <p class="size25">
-                        Donec quis euismod purus. Donec feugiat ligula rhoncus, varius nisl sed, tincidunt lectus.
-                        <span class="txt25">Nulla vulputate</span>
-                        , lectus vel volutpat efficitur, orci
-                        <span class="txt25">lacus sodales</span>
-                        sem, sit amet quam:
-                        <span class="txt24">(001) 345 6889</span>
-                    </p>
-                </div>
-
-                <div class="size24 w-full-md p-t-40">
-                    <h4 class="txt5 m-b-18">
-                        For Event Booking
-                    </h4>
-
-                    <p class="size26">
-                        Donec feugiat ligula rhoncus:
-                        <span class="txt24">(001) 345 6889</span>
-                        , varius nisl sed, tinci-dunt lectus sodales sem.
-                    </p>
-                </div>
-
-            </div>
         </div>
     </section>
-
 </x-app-layout>
+

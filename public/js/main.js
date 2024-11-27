@@ -1,5 +1,6 @@
 
 (function ($) {
+
     "use strict";
 
     /*[ Load page ]
@@ -23,7 +24,7 @@
         overlayParentElement : 'html',
         transition: function(url){ window.location.href = url; }
     });
-    
+
     /*[ Back to top ]
     ===========================================================*/
     var windowH = $(window).height()/2;
@@ -61,18 +62,18 @@
     var myCalendar = $('.my-calendar');
     var isClick = 0;
 
-    $(window).on('click',function(){ 
+    $(window).on('click',function(){
         isClick = 0;
     });
 
-    $(myCalendar).on('apply.daterangepicker',function(){ 
+    $(myCalendar).on('apply.daterangepicker',function(){
         isClick = 0;
     });
 
-    $('.btn-calendar').on('click',function(e){ 
+    $('.btn-calendar').on('click',function(e){
         e.stopPropagation();
 
-        if(isClick == 1) isClick = 0;   
+        if(isClick == 1) isClick = 0;
         else if(isClick == 0) isClick = 1;
 
         if (isClick == 1) {
@@ -80,12 +81,12 @@
         }
     });
 
-    $(myCalendar).on('click',function(e){ 
+    $(myCalendar).on('click',function(e){
         e.stopPropagation();
         isClick = 1;
     });
 
-    $('.daterangepicker').on('click',function(e){ 
+    $('.daterangepicker').on('click',function(e){
         e.stopPropagation();
     });
 
@@ -99,14 +100,14 @@
 
         setTimeout(function(){
             $('.video-mo-01').css('opacity','1');
-        },300);      
+        },300);
     });
 
     $('[data-dismiss="modal"]').on('click',function(){
         $('.video-mo-01').children('iframe')[0].src = srcOld;
         $('.video-mo-01').css('opacity','0');
     });
-    
+
 
     /*[ Fixed Header ]
     ===========================================================*/
@@ -125,7 +126,7 @@
             $(header).removeClass('header-fixed');
             $(logo).attr('src',linkLogo1);
         }
-        
+
     });
 
     /*[ Show/hide sidebar ]
@@ -163,7 +164,7 @@
             var filterValue = $(this).attr('data-filter');
             $topeContainer.isotope({filter: filterValue});
         });
-        
+
     });
 
     // init Isotope
@@ -192,6 +193,6 @@
         });
     });
 
-    
+
 
 })(jQuery);

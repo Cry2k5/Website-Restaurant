@@ -1,27 +1,43 @@
-<div class="col-md-4 p-t-30">
-    <!-- Block1 -->
-    <div class="blo1">
-        <div class="wrap-pic-blo1 bo-rad-10 hov-img-zoom pos-relative">
-            <a href="blog-detail.html"><img src="images/blog-01.jpg" alt="IMG-INTRO"></a>
+@php use Carbon\Carbon; @endphp
+@props(['blog'])
 
-            <div class="time-blog">
-                21 Dec 2024
-            </div>
+<div class="blo4 p-b-63">
+    <div class="pic-blo4 hov-img-zoom bo-rad-10 pos-relative">
+        <div>
+            <!-- Giả sử bạn có trường image_path trong bảng blogs để lưu ảnh -->
+            <img src="{{ $blog->image }}" alt="IMG-BLOG">
         </div>
 
-        <div class="wrap-text-blo1 p-t-35">
-            <a href="blog-detail.html"><h4 class="txt5 color0-hov trans-0-4 m-b-13">
-                    Best Places for Wine
-                </h4></a>
+        <div class="date-blo4 flex-col-c-m">
+            <span class="txt30 m-b-4">
+                {{ Carbon::parse($blog->date)->format('d') }} <!-- Ngày -->
+            </span>
 
-            <p class="m-b-20">
-                Phasellus lorem enim, luctus ut velit eget, con-vallis egestas eros.
-            </p>
-
-            <a href="blog-detail.html" class="txt4">
-                Continue Reading
-                <i class="fa fa-long-arrow-right m-l-10" aria-hidden="true"></i>
-            </a>
+            <span class="txt31">
+                {{ Carbon::parse($blog->date)->format('M, Y') }} <!-- Tháng và Năm -->
+            </span>
         </div>
+    </div>
+
+    <div class="text-blo4 p-t-33">
+        <h4 class="p-b-16">
+            <div class="tit9">{{ $blog->title }}</div> <!-- Tiêu đề bài viết -->
+        </h4>
+
+        <div class="txt32 flex-w p-b-24">
+            <span>
+                by {{ $blog->user->name }} <!-- Tên người đăng từ bảng users -->
+                <span class="m-r-6 m-l-4">|</span>
+            </span>
+
+            <span>
+                {{ Carbon::parse($blog->date)->format('d F, Y') }} <!-- Ngày tháng năm -->
+                <span class="m-r-6 m-l-4">|</span>
+            </span>
+        </div>
+
+        <p>
+            {{ Str::limit($blog->description) }} <!-- Mô tả ngắn gọn của bài viết -->
+        </p>
     </div>
 </div>

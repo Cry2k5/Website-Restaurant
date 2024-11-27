@@ -5,7 +5,7 @@
             <div class="wrap_header trans-0-3">
                 <!-- Logo -->
                 <div class="logo">
-                    <a href="{{route('home')}}">
+                    <a href="{{route('home.index')}}">
                         <img src="images/icons/logo.png" alt="IMG-LOGO" data-logofixed="images/icons/logo2.png">
                     </a>
                 </div>
@@ -15,31 +15,31 @@
                     <nav class="menu">
                         <ul class="main_menu">
                             <li>
-                                <a href="i{{route('home')}}">Home</a>
+                                <a href="{{route('home.index')}}">Home</a>
                             </li>
 
                             <li>
-                                <a href="{{route('menu')}}">Menu</a>
+                                <a href="{{route('home.menu')}}">Menu</a>
                             </li>
 
                             <li>
-                                <a href="{{route('reservation')}}">Reservation</a>
+                                <a href="{{route('home.reservation')}}">Reservation</a>
                             </li>
 
                             <li>
-                                <a href="{{route('gallery')}}">Gallery</a>
+                                <a href="{{route('home.gallery')}}">Gallery</a>
                             </li>
 
                             <li>
-                                <a href="{{route('about')}}">About</a>
+                                <a href="{{route('home.about')}}">About</a>
                             </li>
 
                             <li>
-                                <a href="{{route('blog')}}">Blog</a>
+                                <a href="{{route('home.blog')}}">Blog</a>
                             </li>
 
                             <li>
-                                <a href="{{route('contact')}}">Contact</a>
+                                <a href="{{route('home.contact')}}">Contact</a>
                             </li>
                         </ul>
                     </nav>

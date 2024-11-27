@@ -1,95 +1,11 @@
 <x-app-layout title="Menu">
 
     <!-- Sidebar -->
-    <aside class="sidebar trans-0-4">
-        <!-- Button Hide sidebar -->
-        <button class="btn-hide-sidebar ti-close color0-hov trans-0-4"></button>
-
-        <!-- - -->
-        <ul class="menu-sidebar p-t-95 p-b-70">
-            <li class="t-center m-b-13">
-                <a href="{{route('home')}}" class="txt19">Home</a>
-            </li>
-
-            <li class="t-center m-b-13">
-                <a href="{{route('menu')}}" class="txt19">Menu</a>
-            </li>
-
-            <li class="t-center m-b-13">
-                <a href="{{route('gallery')}}" class="txt19">Gallery</a>
-            </li>
-
-            <li class="t-center m-b-13">
-                <a href="{{route('about')}}" class="txt19">About</a>
-            </li>
-
-            <li class="t-center m-b-13">
-                <a href="{{route('blog')}}" class="txt19">Blog</a>
-            </li>
-
-            <li class="t-center m-b-33">
-                <a href="{{route('contact')}}" class="txt19">Contact</a>
-            </li>
-
-            <li class="t-center">
-                <!-- Button3 -->
-                <a href="{{route('reservation')}}" class="btn3 flex-c-m size13 txt11 trans-0-4 m-l-r-auto">
-                    Reservation
-                </a>
-            </li>
-        </ul>
-
-        <!-- - -->
-        <div class="gallery-sidebar t-center p-l-60 p-r-60 p-b-40">
-            <!-- - -->
-            <h4 class="txt20 m-b-33">
-                Gallery
-            </h4>
-
-            <!-- Gallery -->
-            <div class="wrap-gallery-sidebar flex-w">
-                <a class="item-gallery-sidebar wrap-pic-w" href="images/photo-gallery-01.jpg" data-lightbox="gallery-footer">
-                    <img src="images/photo-gallery-thumb-01.jpg" alt="GALLERY">
-                </a>
-
-                <a class="item-gallery-sidebar wrap-pic-w" href="images/photo-gallery-02.jpg" data-lightbox="gallery-footer">
-                    <img src="images/photo-gallery-thumb-02.jpg" alt="GALLERY">
-                </a>
-
-                <a class="item-gallery-sidebar wrap-pic-w" href="images/photo-gallery-03.jpg" data-lightbox="gallery-footer">
-                    <img src="images/photo-gallery-thumb-03.jpg" alt="GALLERY">
-                </a>
-
-                <a class="item-gallery-sidebar wrap-pic-w" href="images/photo-gallery-05.jpg" data-lightbox="gallery-footer">
-                    <img src="images/photo-gallery-thumb-05.jpg" alt="GALLERY">
-                </a>
-
-                <a class="item-gallery-sidebar wrap-pic-w" href="images/photo-gallery-06.jpg" data-lightbox="gallery-footer">
-                    <img src="images/photo-gallery-thumb-06.jpg" alt="GALLERY">
-                </a>
-
-                <a class="item-gallery-sidebar wrap-pic-w" href="images/photo-gallery-07.jpg" data-lightbox="gallery-footer">
-                    <img src="images/photo-gallery-thumb-07.jpg" alt="GALLERY">
-                </a>
-
-                <a class="item-gallery-sidebar wrap-pic-w" href="images/photo-gallery-09.jpg" data-lightbox="gallery-footer">
-                    <img src="images/photo-gallery-thumb-09.jpg" alt="GALLERY">
-                </a>
-
-                <a class="item-gallery-sidebar wrap-pic-w" href="images/photo-gallery-10.jpg" data-lightbox="gallery-footer">
-                    <img src="images/photo-gallery-thumb-10.jpg" alt="GALLERY">
-                </a>
-
-                <a class="item-gallery-sidebar wrap-pic-w" href="images/photo-gallery-11.jpg" data-lightbox="gallery-footer">
-                    <img src="images/photo-gallery-thumb-11.jpg" alt="GALLERY">
-                </a>
-            </div>
-        </div>
-    </aside>
+    <x-menu-sidebar></x-menu-sidebar>
     <!-- Title Page -->
     <section class="bg-title-page flex-c-m p-t-160 p-b-80 p-l-15 p-r-15" style="background-image: url(images/bg-title-page-01.jpg);">
         <h2 class="tit6 t-center">
-            Pato Menu
+            Menu
         </h2>
     </section>
 
@@ -108,57 +24,54 @@
                         <div class="item-mainmenu m-b-36">
                             <div class="flex-w flex-b m-b-3">
                                 <a href="#" class="name-item-mainmenu txt21">
-                                    Pine nut sbrisalona
+                                    Spring Rolls
                                 </a>
 
                                 <div class="line-item-mainmenu bg3-pattern"></div>
 
                                 <div class="price-item-mainmenu txt22">
-                                    $29.79
+                                    100.000₫
                                 </div>
                             </div>
 
                             <span class="info-item-mainmenu txt23">
-								Sed fermentum eros vitae eros
-							</span>
+                            Fresh rice paper rolls filled with shrimp, herbs, vermicelli noodles, and lettuce, served with peanut dipping sauce.							</span>
                         </div>
 
                         <!-- Item mainmenu -->
                         <div class="item-mainmenu m-b-36">
                             <div class="flex-w flex-b m-b-3">
                                 <a href="#" class="name-item-mainmenu txt21">
-                                    Aenean eu
+                                    Fried Spring Rolls
                                 </a>
 
                                 <div class="line-item-mainmenu bg3-pattern"></div>
 
                                 <div class="price-item-mainmenu txt22">
-                                    $19.35
+                                    45.000₫
                                 </div>
                             </div>
 
                             <span class="info-item-mainmenu txt23">
-								Feugiat maximus neque pharetra
-							</span>
+                    Crispy fried rolls filled with minced pork, shrimp, mushrooms, and vermicelli noodles, served with dipping sauce.							</span>
                         </div>
 
                         <!-- Item mainmenu -->
                         <div class="item-mainmenu m-b-36">
                             <div class="flex-w flex-b m-b-3">
                                 <a href="#" class="name-item-mainmenu txt21">
-                                    Sed feugiat
+                                    Vietnamese Pancake
                                 </a>
 
                                 <div class="line-item-mainmenu bg3-pattern"></div>
 
                                 <div class="price-item-mainmenu txt22">
-                                    $12.19
+                                    45.000₫
                                 </div>
                             </div>
 
                             <span class="info-item-mainmenu txt23">
-								Proin lacinia nisl ut ultricies posuere nulla
-							</span>
+                            A crispy, savory pancake filled with shrimp, pork, bean sprouts, and herbs, served with lettuce and dipping sauce.							</span>
                         </div>
 
                         <!-- Item mainmenu -->
@@ -171,7 +84,7 @@
                                 <div class="line-item-mainmenu bg3-pattern"></div>
 
                                 <div class="price-item-mainmenu txt22">
-                                    $21.89
+                                    450.000₫
                                 </div>
                             </div>
 
@@ -196,7 +109,7 @@
                                 <div class="line-item-mainmenu bg3-pattern"></div>
 
                                 <div class="price-item-mainmenu txt22">
-                                    $29.79
+                                    45.000₫
                                 </div>
                             </div>
 
@@ -209,19 +122,19 @@
                         <div class="item-mainmenu m-b-36">
                             <div class="flex-w flex-b m-b-3">
                                 <a href="#" class="name-item-mainmenu txt21">
-                                    Duis pharetra ligula
+                                    Lemon Grass Tea
                                 </a>
 
                                 <div class="line-item-mainmenu bg3-pattern"></div>
 
                                 <div class="price-item-mainmenu txt22">
-                                    $19.35
+                                    45.000₫
                                 </div>
                             </div>
 
                             <span class="info-item-mainmenu txt23">
-								Feugiat maximus neque pharetra
-							</span>
+                                Refreshing herbal tea infused with lemongrass, served chilled or hot.
+                            </span>
                         </div>
 
                         <!-- Item mainmenu -->
@@ -234,7 +147,7 @@
                                 <div class="line-item-mainmenu bg3-pattern"></div>
 
                                 <div class="price-item-mainmenu txt22">
-                                    $53.34
+                                    45.000₫
                                 </div>
                             </div>
 
@@ -253,7 +166,7 @@
                                 <div class="line-item-mainmenu bg3-pattern"></div>
 
                                 <div class="price-item-mainmenu txt22">
-                                    $62.45
+                                    45.000₫
                                 </div>
                             </div>
 
@@ -280,7 +193,7 @@
                                 <div class="line-item-mainmenu bg3-pattern"></div>
 
                                 <div class="price-item-mainmenu txt22">
-                                    $31.18
+                                    45.000₫
                                 </div>
                             </div>
 
@@ -299,7 +212,7 @@
                                 <div class="line-item-mainmenu bg3-pattern"></div>
 
                                 <div class="price-item-mainmenu txt22">
-                                    $70.25
+                                    45.000₫
                                 </div>
                             </div>
 
@@ -318,7 +231,7 @@
                                 <div class="line-item-mainmenu bg3-pattern"></div>
 
                                 <div class="price-item-mainmenu txt22">
-                                    $36.19
+                                    45.000₫
                                 </div>
                             </div>
 
@@ -337,7 +250,7 @@
                                 <div class="line-item-mainmenu bg3-pattern"></div>
 
                                 <div class="price-item-mainmenu txt22">
-                                    $19.50
+                                    45.000₫
                                 </div>
                             </div>
 
@@ -356,7 +269,7 @@
                                 <div class="line-item-mainmenu bg3-pattern"></div>
 
                                 <div class="price-item-mainmenu txt22">
-                                    $29.15
+                                    45.000₫
                                 </div>
                             </div>
 
@@ -375,7 +288,7 @@
                                 <div class="line-item-mainmenu bg3-pattern"></div>
 
                                 <div class="price-item-mainmenu txt22">
-                                    $29.79
+                                    45.000₫
                                 </div>
                             </div>
 
@@ -394,7 +307,7 @@
                                 <div class="line-item-mainmenu bg3-pattern"></div>
 
                                 <div class="price-item-mainmenu txt22">
-                                    $19.35
+                                    45.000₫
                                 </div>
                             </div>
 
@@ -419,7 +332,7 @@
                                 <div class="line-item-mainmenu bg3-pattern"></div>
 
                                 <div class="price-item-mainmenu txt22">
-                                    $9.79
+                                    45.000₫
                                 </div>
                             </div>
 
@@ -438,7 +351,7 @@
                                 <div class="line-item-mainmenu bg3-pattern"></div>
 
                                 <div class="price-item-mainmenu txt22">
-                                    $19.35
+                                    45.000₫
                                 </div>
                             </div>
 
@@ -457,7 +370,7 @@
                                 <div class="line-item-mainmenu bg3-pattern"></div>
 
                                 <div class="price-item-mainmenu txt22">
-                                    $5.79
+                                    45.000₫
                                 </div>
                             </div>
 
@@ -471,296 +384,8 @@
         </div>
     </section>
 
+    <x-menu-item>
 
-    <!-- Lunch -->
-    <section class="section-lunch bgwhite">
-        <div class="header-lunch parallax0 parallax100" style="background-image: url(images/header-menu-01.jpg);">
-            <div class="bg1-overlay t-center p-t-170 p-b-165">
-                <h2 class="tit4 t-center">
-                    Lunch
-                </h2>
-            </div>
-        </div>
-
-        <div class="container">
-            <div class="row p-t-108 p-b-70">
-                <div class="col-md-8 col-lg-6 m-l-r-auto">
-                    <!-- Block3 -->
-                    <div class="blo3 flex-w flex-col-l-sm m-b-30">
-                        <div class="pic-blo3 size20 bo-rad-10 hov-img-zoom m-r-28">
-                            <a href="#"><img src="images/lunch-01.jpg" alt="IMG-MENU"></a>
-                        </div>
-
-                        <div class="text-blo3 size21 flex-col-l-m">
-                            <a href="#" class="txt21 m-b-3">
-                                Sed varius
-                            </a>
-
-                            <span class="txt23">
-								Aenean pharetra tortor dui in pellentesque
-							</span>
-
-                            <span class="txt22 m-t-20">
-								$29.79
-							</span>
-                        </div>
-                    </div>
-
-                    <!-- Block3 -->
-                    <div class="blo3 flex-w flex-col-l-sm m-b-30">
-                        <div class="pic-blo3 size20 bo-rad-10 hov-img-zoom m-r-28">
-                            <a href="#"><img src="images/lunch-03.jpg" alt="IMG-MENU"></a>
-                        </div>
-
-                        <div class="text-blo3 size21 flex-col-l-m">
-                            <a href="#" class="txt21 m-b-3">
-                                tempus aliquet
-                            </a>
-
-                            <span class="txt23">
-								Aenean condimentum ante erat
-							</span>
-
-                            <span class="txt22 m-t-20">
-								$45.09
-							</span>
-                        </div>
-                    </div>
-
-                    <!-- Block3 -->
-                    <div class="blo3 flex-w flex-col-l-sm m-b-30">
-                        <div class="pic-blo3 size20 bo-rad-10 hov-img-zoom m-r-28">
-                            <a href="#"><img src="images/lunch-05.jpg" alt="IMG-MENU"></a>
-                        </div>
-
-                        <div class="text-blo3 size21 flex-col-l-m">
-                            <a href="#" class="txt21 m-b-3">
-                                Duis massa
-                            </a>
-
-                            <span class="txt23">
-								Proin lacinia nisl ut ultricies posuere nulla
-							</span>
-
-                            <span class="txt22 m-t-20">
-								$12.75
-							</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-8 col-lg-6 m-l-r-auto">
-                    <!-- Block3 -->
-                    <div class="blo3 flex-w flex-col-l-sm m-b-30">
-                        <div class="pic-blo3 size20 bo-rad-10 hov-img-zoom m-r-28">
-                            <a href="#"><img src="images/lunch-02.jpg" alt="IMG-MENU"></a>
-                        </div>
-
-                        <div class="text-blo3 size21 flex-col-l-m">
-                            <a href="#" class="txt21 m-b-3">
-                                sbrisalona
-                            </a>
-
-                            <span class="txt23">
-								Proin lacinia nisl ut ultricies posuere nulla
-							</span>
-
-                            <span class="txt22 m-t-20">
-								$29.79
-							</span>
-                        </div>
-                    </div>
-
-                    <!-- Block3 -->
-                    <div class="blo3 flex-w flex-col-l-sm m-b-30">
-                        <div class="pic-blo3 size20 bo-rad-10 hov-img-zoom m-r-28">
-                            <a href="#"><img src="images/lunch-04.jpg" alt="IMG-MENU"></a>
-                        </div>
-
-                        <div class="text-blo3 size21 flex-col-l-m">
-                            <a href="#" class="txt21 m-b-3">
-                                Cras eget magna
-                            </a>
-
-                            <span class="txt23">
-								Sed fermentum eros vitae eros
-							</span>
-
-                            <span class="txt22 m-t-20">
-								$45.09
-							</span>
-                        </div>
-                    </div>
-
-                    <!-- Block3 -->
-                    <div class="blo3 flex-w flex-col-l-sm m-b-30">
-                        <div class="pic-blo3 size20 bo-rad-10 hov-img-zoom m-r-28">
-                            <a href="#"><img src="images/lunch-06.jpg" alt="IMG-MENU"></a>
-                        </div>
-
-                        <div class="text-blo3 size21 flex-col-l-m">
-                            <a href="#" class="txt21 m-b-3">
-                                Nullam maximus
-                            </a>
-
-                            <span class="txt23">
-								Duis massa nibh porttitor nec imperdiet eget
-							</span>
-
-                            <span class="txt22 m-t-20">
-								$12.75
-							</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-
-    <!-- Dinner -->
-    <section class="section-dinner bgwhite">
-        <div class="header-dinner parallax0 parallax100" style="background-image: url(images/header-menu-02.jpg);">
-            <div class="bg1-overlay t-center p-t-170 p-b-165">
-                <h2 class="tit4 t-center">
-                    Dinner
-                </h2>
-            </div>
-        </div>
-
-        <div class="container">
-            <div class="row p-t-108 p-b-70">
-                <div class="col-md-8 col-lg-6 m-l-r-auto">
-                    <!-- Block3 -->
-                    <div class="blo3 flex-w flex-col-l-sm m-b-30">
-                        <div class="pic-blo3 size20 bo-rad-10 hov-img-zoom m-r-28">
-                            <a href="#"><img src="images/dinner-01.jpg" alt="IMG-MENU"></a>
-                        </div>
-
-                        <div class="text-blo3 size21 flex-col-l-m">
-                            <a href="#" class="txt21 m-b-3">
-                                Maecenas tristique
-                            </a>
-
-                            <span class="txt23">
-								Aenean pharetra tortor dui in pellentesque
-							</span>
-
-                            <span class="txt22 m-t-20">
-								$29.79
-							</span>
-                        </div>
-                    </div>
-
-                    <!-- Block3 -->
-                    <div class="blo3 flex-w flex-col-l-sm m-b-30">
-                        <div class="pic-blo3 size20 bo-rad-10 hov-img-zoom m-r-28">
-                            <a href="#"><img src="images/dinner-03.jpg" alt="IMG-MENU"></a>
-                        </div>
-
-                        <div class="text-blo3 size21 flex-col-l-m">
-                            <a href="#" class="txt21 m-b-3">
-                                Pine nut sbrisalona
-                            </a>
-
-                            <span class="txt23">
-								Aenean condimentum ante erat
-							</span>
-
-                            <span class="txt22 m-t-20">
-								$45.09
-							</span>
-                        </div>
-                    </div>
-
-                    <!-- Block3 -->
-                    <div class="blo3 flex-w flex-col-l-sm m-b-30">
-                        <div class="pic-blo3 size20 bo-rad-10 hov-img-zoom m-r-28">
-                            <a href="#"><img src="images/dinner-05.jpg" alt="IMG-MENU"></a>
-                        </div>
-
-                        <div class="text-blo3 size21 flex-col-l-m">
-                            <a href="#" class="txt21 m-b-3">
-                                Suspendisse eu
-                            </a>
-
-                            <span class="txt23">
-								Proin lacinia nisl ut ultricies posuere nulla
-							</span>
-
-                            <span class="txt22 m-t-20">
-								$12.75
-							</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-8 col-lg-6 m-l-r-auto">
-                    <!-- Block3 -->
-                    <div class="blo3 flex-w flex-col-l-sm m-b-30">
-                        <div class="pic-blo3 size20 bo-rad-10 hov-img-zoom m-r-28">
-                            <a href="#"><img src="images/dinner-02.jpg" alt="IMG-MENU"></a>
-                        </div>
-
-                        <div class="text-blo3 size21 flex-col-l-m">
-                            <a href="#" class="txt21 m-b-3">
-                                Cras maximus
-                            </a>
-
-                            <span class="txt23">
-								Proin lacinia nisl ut ultricies posuere nulla
-							</span>
-
-                            <span class="txt22 m-t-20">
-								$29.79
-							</span>
-                        </div>
-                    </div>
-
-                    <!-- Block3 -->
-                    <div class="blo3 flex-w flex-col-l-sm m-b-30">
-                        <div class="pic-blo3 size20 bo-rad-10 hov-img-zoom m-r-28">
-                            <a href="#"><img src="images/dinner-04.jpg" alt="IMG-MENU"></a>
-                        </div>
-
-                        <div class="text-blo3 size21 flex-col-l-m">
-                            <a href="#" class="txt21 m-b-3">
-                                Pine nut sbrisalona
-                            </a>
-
-                            <span class="txt23">
-								Sed fermentum eros vitae eros
-							</span>
-
-                            <span class="txt22 m-t-20">
-								$45.09
-							</span>
-                        </div>
-                    </div>
-
-                    <!-- Block3 -->
-                    <div class="blo3 flex-w flex-col-l-sm m-b-30">
-                        <div class="pic-blo3 size20 bo-rad-10 hov-img-zoom m-r-28">
-                            <a href="#"><img src="images/dinner-06.jpg" alt="IMG-MENU"></a>
-                        </div>
-
-                        <div class="text-blo3 size21 flex-col-l-m">
-                            <a href="#" class="txt21 m-b-3">
-                                Tempor malesuada
-                            </a>
-
-                            <span class="txt23">
-								Duis massa nibh porttitor nec imperdiet eget
-							</span>
-
-                            <span class="txt22 m-t-20">
-								$12.75
-							</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    </x-menu-item>
 
 </x-app-layout>
