@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Blog;
 use App\Models\User;
 
 use Illuminate\Http\Request;
@@ -21,7 +22,7 @@ class UserController extends Controller
         $users = User::where('id','>',1)
         ->paginate(10);
 
-        return view('admin.user',['users'=>$users]);
+        return view('admin.users',['users'=>$users]);
     }
 
     /**
@@ -29,7 +30,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('admin.user');  // Hiển thị form thêm người dùng
+        return view('admin.users');
     }
 
     /**
@@ -47,7 +48,7 @@ class UserController extends Controller
         ]);
 
         // Mã hóa mật khẩu trước khi lưu
-        $data['password'] = Crypt::encrypt($request->password);
+        $data['password'] = Hash::make($request->password);
 
         User::create($data);
 
@@ -70,30 +71,44 @@ class UserController extends Controller
         return response()->json($user);  // Trả về dữ liệu người dùng dưới dạng JSON
     }
 
-
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request,User $user)
     {
-        $data = $request->validate([
+
+        // Xác thực dữ liệu từ form
+        $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email,' . $user->id,
-            'password' => 'nullable|string|min:6',
-            'phone' => 'nullable|string|max:255',
+            'phone' => 'nullable|string|max:15',
             'address' => 'nullable|string|max:255',
+            'password' => 'nullable|min:6',
             'role' => 'required|in:Admin,Staff',
         ]);
 
-        // Nếu có thay đổi mật khẩu, mã hóa lại mật khẩu
-        if ($request->password) {
-            $data['password'] = Hash::make($request->password);
+
+        // Cập nhật thông tin người dùng
+        $user->fill([
+            'name' => $request->input('name'),
+            'email' => $request->input('email'),
+            'phone' => $request->input('phone'),
+            'address' => $request->input('address'),
+            'role' => $request->input('role'),
+        ]);
+
+        // Chỉ cập nhật mật khẩu nếu người dùng nhập
+        if ($request->filled('password')) {
+            $user->password = Hash::make($request->input('password'));
         }
 
-        $user->update($data);
+        // Lưu thông tin người dùng
+        $user->save();
 
+        // Chuyển hướng lại với thông báo thành công
         return redirect()->route('users.index')->with('success', 'User updated successfully!');
     }
+
 
 
     /**
@@ -107,27 +122,51 @@ class UserController extends Controller
     }
 
 
+//
+
     public function search(Request $request)
     {
         $search = $request->input('search');
 
-        $users = User::when($search, function ($query, $search) {
-            return $query->where('id', '>', 1)
-            ->where(function ($query) use ($search) {
-                $query->where('name', 'like', "%{$search}%")
-                    ->orWhere('email', 'like', "%{$search}%")
-                    ->orWhere('phone', 'like', "%{$search}%")
-                    ->orWhere('role', 'like', "%{$search}%")
-                    ->orWhere('address', 'like', "%{$search}%");
-            });
-        })
-            ->paginate(10);
+        // Start the query
+        $query = User::query();
 
-        // Trả về kết quả dưới dạng JSON để cập nhật bảng
+        // Apply search conditions if search term is provided
+        if ($search) {
+            $query->where(function ($query) use ($search) {
+                $query->where('title', 'like', "%{$search}%")
+                    ->orWhere('user_id', 'like', "%{$search}%")
+                    ->orWhere('description', 'like', "%{$search}%")
+                    ->orWhere('date', 'like', "%{$search}%");
+            });
+        }
+
+        // Paginate results
+        $users = $query->paginate(10);
+
+        // Return the results as JSON
         return response()->json([
             'users' => $users
         ]);
     }
+
+//    public function search(Request $request)
+//    {
+//        $query = $request->get('search');  // Lấy từ khóa tìm kiếm từ request
+//
+//        $users = User::whereNot('id', 1) // Loại bỏ người dùng có ID = 1
+//        ->where(function ($q) use ($query) {
+//            $q->where('name', 'like', '%' . $query . '%')
+//                ->orWhere('email', 'like', '%' . $query . '%')
+//                ->orWhere('phone', 'like', '%' . $query . '%');
+//        })
+//            ->paginate(10);  // Phân trang kết quả
+//
+//        return response()->json([
+//            'users' => $users,
+//        ]);
+//    }
+//
 
 
 

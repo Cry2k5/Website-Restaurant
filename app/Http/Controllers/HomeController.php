@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Blog;
+use App\Models\Category;
+use App\Models\Gallery;
+use App\Models\GalleryCategory;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -18,19 +21,35 @@ class HomeController extends Controller
         return view('home.index', compact('blogs'));
     }
     public function menu(){
-        return view('home.menu');
+        $categories = Category::with('dishes')->get(); // Eager load dishes for each category
+        return view('home.menu', compact('categories'));
     }
     public function reservation(){
         return view('home.reservation');
     }
-    public function gallery(){
-        return view('home.gallery');
+    public function gallery()
+    {
+        // Lấy tất cả các danh mục
+        $categories = GalleryCategory::all();
+
+        // Lấy tất cả các hình ảnh theo từng danh mục và phân trang (giả sử mỗi trang có 6 ảnh)
+        $galleries = Gallery::with('category')->paginate(6);  // 6 ảnh mỗi trang
+
+        return view('home.gallery', compact('categories', 'galleries'));
     }
     public function about(){
         return view('home.about');
     }
     public function blog(){
-        return view('home.blog');
+        {
+        // Lấy tất cả các bài viết với thông tin người đăng (eager load user)
+        $blogs = Blog::with('user')->paginate(3);
+
+
+        // Trả về view và truyền dữ liệu bài viết
+        return view('home.blog', compact('blogs'));
+
+    }
     }
     public function contact(){
     return view('home.contact');

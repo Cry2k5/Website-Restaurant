@@ -47,46 +47,51 @@
             padding: 20px;
             background: #f8f9fa;
         }
+        .pagination {
+            justify-content: center; /* Căn giữa phân trang */
+            margin-top: 20px; /* Khoảng cách từ bảng lên phân trang */
+        }
+
+        .pagination .page-item {
+            margin: 0 5px; /* Khoảng cách giữa các trang */
+        }
+
+        .pagination .page-link {
+            color: #007bff; /* Màu sắc mặc định của liên kết */
+            border: 1px solid #dee2e6; /* Viền của các trang */
+            padding: 8px 15px; /* Khoảng cách bên trong mỗi trang */
+            border-radius: 5px; /* Bo góc nhẹ cho các trang */
+            transition: background-color 0.3s, color 0.3s; /* Hiệu ứng hover */
+        }
+
+        .pagination .page-link:hover {
+            background-color: #007bff; /* Màu nền khi hover */
+            color: white; /* Màu chữ khi hover */
+        }
+
+        .pagination .page-item.active .page-link {
+            background-color: #007bff; /* Màu nền cho trang đang chọn */
+            color: white; /* Màu chữ cho trang đang chọn */
+        }
+
+        .pagination .page-item.disabled .page-link {
+            color: #6c757d; /* Màu cho các trang không có hiệu lực (ví dụ: "Previous" và "Next" khi ở trang đầu/cuối) */
+            cursor: not-allowed;
+        }
+
+        .pagination .page-item:first-child .page-link {
+            border-top-left-radius: 5px;
+            border-bottom-left-radius: 5px;
+        }
+
+        .pagination .page-item:last-child .page-link {
+            border-top-right-radius: 5px;
+            border-bottom-right-radius: 5px;
+        }
     </style>
 </head>
 <body>
+<x-admin-side-bar />
 {{$slot}}
-<script>
-    // Lắng nghe sự kiện "Edit" để điền thông tin vào modal
-    // document.querySelectorAll('.edit-btn').forEach(function (button) {
-    //     button.addEventListener('click', function () {
-    //         var userId = this.getAttribute('data-id');
-    //         // Lấy thông tin người dùng từ bảng hoặc API nếu cần
-    //         var userName = this.getAttribute('data-name');
-    //         var userEmail = this.getAttribute('data-email');
-    //         // Cập nhật giá trị các trường trong modal
-    //         document.getElementById('userNameEdit').value = userName;
-    //         document.getElementById('userEmailEdit').value = userEmail;
-    //         document.getElementById('userIdEdit').value = userId;
-    //     });
-    // });
-    document.querySelectorAll('.edit-btn').forEach(function (button) {
-        button.addEventListener('click', function () {
-            var userId = this.getAttribute('data-id'); // Lấy ID người dùng
-
-            // Gửi AJAX request đến controller để lấy thông tin người dùng
-            $.ajax({
-                url: '/users/' + userId + '/edit',  // Đường dẫn lấy thông tin người dùng
-                method: 'GET',
-                success: function(data) {
-                    // Điền dữ liệu vào modal form
-                    $('#userNameEdit').val(data.name);
-                    $('#userEmailEdit').val(data.email);
-                    $('#userPhoneEdit').val(data.phone);
-                    $('#userAddressEdit').val(data.address);
-                    $('#userRoleEdit').val(data.role);
-                    $('#userIdEdit').val(data.id); // Điền ID vào hidden field
-                }
-            });
-        });
-    });
-
-
-</script>
 </body>
 </html>

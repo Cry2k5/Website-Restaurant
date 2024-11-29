@@ -1,7 +1,7 @@
 <div class="sidebar">
     <!-- Logo và tên website -->
     <div class="py-3 text-center">
-        <h3>Website XXX</h3>
+        <h3>Administrator</h3>
     </div>
 
     <!-- Hiển thị thông tin người dùng -->
@@ -17,17 +17,24 @@
     <!-- Danh sách chức năng -->
     <ul>
         <!-- Sidebar Menu -->
-        <ul class="nav flex-column">
-            <li class="nav-item mb-2">
-                <a href="{{ route('users.index') }}" class="nav-link text-white">Quản lý người dùng</a>
-            </li>
-            <li class="nav-item mb-2">
-                <a href="{{ route('users.index') }}" class="nav-link text-white">Quản lý thực đơn</a>
-            </li>
-            <li class="nav-item mb-2">
-                <a href="#" class="nav-link text-white">Quản lý hóa đơn</a>
-            </li>
-        </ul>
+        <li class="nav-item mb-2">
+            <a href="{{ route('users.index') }}" class="nav-link text-white">Quản lý người dùng</a>
+        </li>
+        <li class="nav-item mb-2">
+            <a href="{{ route('blogs.index') }}" class="nav-link text-white">Quản lý bài viết</a>
+        </li>
+        <li class="nav-item mb-2">
+            <a href="{{ route('tables.index') }}" class="nav-link text-white">Quản lý bàn</a>
+        </li>
+{{--        <li class="nav-item mb-2">--}}
+{{--            <a href="{{ route('tables.pos') }}" class="nav-link text-white">Quản lý bán hàng</a>--}}
+{{--        </li>--}}
+        <li class="nav-item mb-2">
+            <a href="{{ route('dishes.index') }}" class="nav-link text-white">Quản lý món ăn</a>
+        </li>
+        <li class="nav-item mb-2">
+            <a href="#" class="nav-link text-white">Quản lý hóa đơn</a>
+        </li>
 
     </ul>
 

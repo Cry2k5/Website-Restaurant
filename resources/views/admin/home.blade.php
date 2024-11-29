@@ -1,5 +1,4 @@
 <x-admin-base-layout title="Home">
-    <x-admin-side-bar />
         <!-- Main Content -->
         <div class="main-content">
             <div id="content-area">

@@ -3,20 +3,22 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DishController;
 use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\ReservationController;
+use App\Http\Controllers\TableController;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\LoginMiddleware;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\AuthenticateMiddleware;
 
 Route::get('/',[HomeController::class,'home'])->name('home.index');
-Route::get('/menu',[MenuController::class,'menu'])->name('home.menu');
-Route::get('/gallery',[GalleryController::class,'gallery'])->name('home.gallery');
+Route::get('/menu',[HomeController::class,'menu'])->name('home.menu');
+Route::get('/gallery',[HomeController::class,'gallery'])->name('home.gallery');
 Route::get('/about',[HomeController::class,'about'])->name('home.about');
-Route::get('/blog',[BlogController::class,'index'])->name('home.blog');
+Route::get('/blog',[HomeController::class,'blog'])->name('home.blog');
 Route::get('/contact',[HomeController::class,'contact'])->name('home.contact');
 
 Route::get('/reservation',[ReservationController::class,'reservation'])->name('home.reservation');
@@ -46,6 +48,50 @@ Route::get('/admin/home', function () {
 
 
 
-Route::resource('admin/users', UserController::class);
-Route::get('users/{user}/edit', [UserController::class, 'edit']);
-Route::get('/users/search', [UserController::class, 'search'])->name('users.search');
+Route::get('admin/users', [UserController::class,'index'])->name('users.index');
+
+Route::get('admin/users/{user}', [UserController::class, 'edit'])->name('users.edit');
+Route::put('admin/users/{user}', [UserController::class, 'update'])->name('users.update');
+
+Route::get('admin/users/create', [UserController::class, 'create'])->name('users.create');
+Route::post('admin/users/store', [UserController::class, 'store'])->name('users.store');
+
+Route::get('admin/users/search', [UserController::class, 'search'])->name('users.search');
+Route::delete('admin/users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
+
+
+Route::get('admin/blogs', [BlogController::class,'index'])->name('blogs.index');
+
+Route::get('admin/blogs/{blog}', [BlogController::class, 'edit'])->name('blogs.edit');
+Route::put('admin/blogs/{blog}', [BlogController::class, 'update'])->name('blogs.update');
+
+Route::get('admin/blogs/create', [BlogController::class, 'create'])->name('blogs.create');
+Route::post('admin/blogs/store', [BlogController::class, 'store'])->name('blogs.store');
+
+Route::get('admin/blogs/search', [BlogController::class, 'search'])->name('blogs.search');
+Route::delete('admin/blogs/{blog}', [BlogController::class, 'destroy'])->name('blogs.destroy');
+
+Route::get('admin/tables', [TableController::class,'index'])->name('tables.index');
+
+Route::get('admin/tables/{table_id}', [TableController::class, 'edit'])->name('tables.edit');
+Route::put('admin/tables/{table_id}', [TableController::class, 'update'])->name('tables.update');
+
+Route::get('admin/tables/create', [TableController::class, 'create'])->name('tables.create');
+Route::post('admin/tables/store', [TableController::class, 'store'])->name('tables.store');
+
+Route::get('admin/tables/search', [TableController::class, 'search'])->name('tables.search');
+Route::delete('admin/tables/{table_id}', [TableController::class, 'destroy'])->name('tables.destroy');
+
+
+Route::get('admin/dishes', [DishController::class,'index'])->name('dishes.index');
+
+Route::get('admin/dishes/{dish_id}', [DishController::class, 'edit'])->name('dishes.edit');
+Route::put('admin/dishes/{dish_id}', [DishController::class, 'update'])->name('dishes.update');
+
+Route::get('admin/dishes/create', [DishController::class, 'create'])->name('dishes.create');
+Route::post('admin/dishes/store', [DishController::class, 'store'])->name('dishes.store');
+
+Route::get('admin/dishes/search', [DishController::class, 'search'])->name('dishes.search');
+Route::delete('admin/dishes/{dish_id}', [DishController::class, 'destroy'])->name('dishes.destroy');
+
+//Route::get('admin/pos', [TableController::class,'posIndex'])->name('tables.pos');
