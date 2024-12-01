@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Bill;
+use App\Models\Category;
+use App\Models\Dish;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class BillController extends Controller
 {
@@ -11,7 +15,8 @@ class BillController extends Controller
      */
     public function index()
     {
-        //
+        $bills = Bill::paginate(10);
+        return view('admin.bills',compact('bills'));
     }
 
     /**
@@ -43,9 +48,8 @@ class BillController extends Controller
      */
     public function edit(string $id)
     {
-        //
-    }
 
+    }
     /**
      * Update the specified resource in storage.
      */
@@ -57,8 +61,9 @@ class BillController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Bill $bill)
     {
-        //
+        $bill->delete();
+        return redirect()->route('bills.index')->with('success', 'Bill deleted successfully.');
     }
 }

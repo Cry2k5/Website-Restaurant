@@ -20,7 +20,10 @@ class User extends Authenticatable
 
 
 
-
+    public function bills(): HasMany
+    {
+        return $this->hasMany(Bill::class);
+    }
 
     // Mối quan hệ một-nhiều với bảng blogs
 

@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('bills', function (Blueprint $table) {
             $table->id('bill_id')->primary();
-            $table->foreignId('user_id')->constrained('users');
+            $table->foreignId('user_id')->nullable()->constrained('users');
             $table->foreignId('reservation_id')->nullable()->references('reservation_id')->on('reservations');
             $table->foreignId('table_id')->references('table_id')->on('restaurant_tables');
             $table->string('payment_method')->nullable();

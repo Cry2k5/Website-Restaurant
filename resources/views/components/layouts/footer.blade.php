@@ -23,7 +23,11 @@
                         anhhh.23itb@vku.udn.vn
                     </li>
                 </ul>
+            </div>
+                <!-- - -->
 
+
+            <div class="col-sm-6 col-md-6 p-t-50">
                 <!-- - -->
                 <h4 class="txt13 m-b-32">
                     Opening Times
@@ -40,21 +44,6 @@
                 </ul>
             </div>
 
-
-            <div class="col-sm-6 col-md-6 p-t-50">
-                <!-- - -->
-                <h4 class="txt13 m-b-38">
-                    Gallery
-                </h4>
-
-                <!-- Gallery footer -->
-                <div class="wrap-gallery-footer flex-w">
-                    @for($i=0;$i<10;$i++)
-                        <a class="item-gallery-footer wrap-pic-w" href="images/photo-gallery-01.jpg" data-lightbox="gallery-footer">
-                            <img src="images/photo-gallery-thumb-01.jpg" alt="GALLERY">
-                        </a>
-                    @endfor
-                </div>
 
             </div>
         </div>

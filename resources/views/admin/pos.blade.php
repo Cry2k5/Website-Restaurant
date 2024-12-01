@@ -1,67 +1,44 @@
-<x-admin-base-layout title="Quản lý bán hàng">
+<x-admin-base-layout title="POS - Table Management">
     <div class="container mt-4">
-        <h1 class="text-center mb-4">Danh sách bàn</h1>
-        <div class="row justify-content-center">
-            <div class="d-flex flex-wrap justify-content-center gap-3">
-                @foreach($restaurant_tables as $table)
-                    <div class="table-card"
-                         style="background-color:
-                         {{ $table->state == 'unavailable' ? 'rgb(216, 0, 50)' : ($table->state == 'reserved' ? 'rgb(248, 222, 34)' : 'rgb(23, 89, 74)') }};">
-                        <a href="#" class="text-decoration-none text-white">
-                            <div class="card-body d-flex flex-column justify-content-center align-items-center">
-                                <h4>Table {{ $table->table_id }}</h4>
-                                <p>Capacity: {{ $table->capacity }}</p>
-                            </div>
-                        </a>
-                    </div>
-                @endforeach
-            </div>
-        </div>
+        <h1 class="text-center mb-4">Table Management</h1>
 
-        <div class="row d-flex justify-content-around" style="margin-top: 2rem;">
-            <div class="col-md-3">
-                <div class="alert alert-success text-center" style="background-color: rgb(23, 89, 74); color: white;">
-                    Available
+        <div class="row">
+            <!-- Iterate through tables and display -->
+            @foreach($restaurant_tables as $table)
+                <div class="col-md-3 col-sm-6 mb-4">
+                    <!-- Kiểm tra xem có hóa đơn nào cho bàn này không -->
+                    @php
+                        // Lọc các hóa đơn theo table_id và lấy hóa đơn cuối cùng
+                        $bill = $bills->filter(function ($bill) use ($table) {
+                            return $bill->table_id == $table->table_id;
+                        })->last(); // Lấy hóa đơn cuối cùng
+                    @endphp
+
+                    <a href="{{ route('orders.index', ['table_id' => $table->table_id, 'bill_id' => $bill ? $bill->bill_id : '#']) }}" class="text-decoration-none">
+                        <div class="card text-center shadow"
+                             style="border: 2px solid {{ $table->state == 'available' ? '#28a745' : ($table->state == 'reserved' ? '#ffc107' : '#dc3545') }};">
+                            <div class="card-body">
+                                <h5 class="card-title">Table {{ $table->table_id }}</h5>
+                                <p class="card-text">
+                                    Capacity: {{ $table->capacity }}
+                                </p>
+                                <span class="badge"
+                                      style="background-color: {{ $table->state == 'available' ? '#28a745' : ($table->state == 'reserved' ? '#ffc107' : '#dc3545') }}; color: white;">
+                                    {{ ucfirst($table->state) }}
+                                </span>
+
+                                <!-- Hiển thị thông tin hóa đơn nếu có -->
+                                @if($bill)
+                                    <p class="mt-2">Bill ID: {{ $bill->bill_id }}</p>
+                                @else
+                                    <p class="mt-2 text-muted">No Bill</p>
+                                @endif
+
+                            </div>
+                        </div>
+                    </a>
                 </div>
-            </div>
-            <div class="col-md-3">
-                <div class="alert alert-warning text-center" style="background-color: rgb(248, 222, 34); color: black;">
-                    Reserved
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="alert alert-danger text-center" style="background-color: rgb(216, 0, 50); color: white;">
-                    Unavailable
-                </div>
-            </div>
+            @endforeach
         </div>
     </div>
-
-    <style>
-        .table-card {
-            width: 120px;
-            height: 120px;
-            border-radius: 10px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .table-card:hover {
-            transform: scale(1.1);
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
-        }
-
-        .card-body {
-            text-align: center;
-        }
-
-        .table-card a {
-            display: block;
-            height: 100%;
-            width: 100%;
-            color: white;
-        }
-    </style>
 </x-admin-base-layout>

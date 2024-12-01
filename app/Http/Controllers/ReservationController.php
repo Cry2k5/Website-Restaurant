@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Mail\ReservationConfirmationMail;
+use App\Models\Bill;
 use App\Models\Reservation;
 use App\Models\RestaurantTable;
 use Barryvdh\DomPDF\Facade\Pdf;
@@ -19,6 +20,7 @@ class ReservationController extends Controller
 
     public function store(Request $request)
     {
+        // Validate input data
         $validated = $request->validate([
             'customer_name' => 'required|string|max:255',
             'customer_phone' => 'required|string|max:20',
@@ -35,13 +37,26 @@ class ReservationController extends Controller
         // Generate PDF
         $pdf = Pdf::loadView('pdf.reservation', compact('reservation'));
 
+        // Create Bill (Hóa đơn) for the reservation
+        $bill = Bill::create([
+            'user_id' => null, // or any other user ID if you want to link it with a user
+            'reservation_id' => $reservation->reservation_id,
+            'table_id' => $reservation->table_id,
+            'bill_time' => now(),
+        ]);
+        $bill->save();
+        // Update the table state to 'reserved'
+        $table = RestaurantTable::find($reservation->table_id);
+        $table->state = 'reserved';
+        $table->save();
+
         // Check if email is provided
         if ($request->customer_email) {
             // Send Email with PDF attached
             Mail::send([], [], function ($message) use ($request, $pdf, $reservation) {
                 $message->to($request->customer_email)
                     ->subject('Reservation Confirmation')
-                    ->html('<p>Cảm ơn bạn đã đặt bàn! Vui lòng xem thông tin đặt bàn trong file đính kèm.</p>')
+                    ->html('<p>Thank you for making a reservation! Please see the reservation information in the attached file.</p>')
                     ->attachData($pdf->output(), "reservation_{$reservation->id}.pdf", [
                         'mime' => 'application/pdf',
                     ]);

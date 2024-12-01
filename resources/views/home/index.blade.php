@@ -119,13 +119,66 @@
         <div class="content-intro bg-white p-t-77 p-b-133">
             <div class="container">
                 <div class="row">
-                    @for($i=0;$i<3;$i++)
-                        <x-intro-item></x-intro-item>
-                        @endfor
+                    <div class="col-md-4 p-t-30">
+                        <!-- Block1 -->
+                        <div class="blo1">
+                            <div class="wrap-pic-blo1 bo-rad-10 hov-img-zoom">
+                                <a href="#"><img src="images/intro-03.jpg" alt="IMG-INTRO"></a>
+                            </div>
+
+                            <div class="wrap-text-blo1 p-t-35">
+                                <a href="#"><h4 class="txt5 color0-hov trans-0-4 m-b-13">
+                                        Authentic Vietnamese Cuisine
+                                    </h4></a>
+
+                                <p class="m-b-20">
+                                    Experience the authentic flavors of Vietnam with traditional dishes                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 p-t-30">
+                        <!-- Block2 -->
+                        <div class="blo1">
+                            <div class="wrap-pic-blo1 bo-rad-10 hov-img-zoom">
+                                <a href="#"><img src="images/intro-02.jpg" alt="IMG-INTRO"></a>
+                            </div>
+
+                            <div class="wrap-text-blo1 p-t-35">
+                                <a href="#"><h4 class="txt5 color0-hov trans-0-4 m-b-13">
+                                        Vietnamese Coffee & Drinks
+                                    </h4></a>
+
+                                <p class="m-b-20">
+                                    Enjoy the famous iced milk coffee, fresh sugarcane juice, or fragrant lemongrass lime tea.                                </p>
+
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 p-t-30">
+                        <!-- Block3 -->
+                        <div class="blo1">
+                            <div class="wrap-pic-blo1 bo-rad-10 hov-img-zoom">
+                                <a href="#"><img src="images/intro-04.jpg" alt="IMG-INTRO"></a>
+                            </div>
+
+                            <div class="wrap-text-blo1 p-t-35">
+                                <a href="#"><h4 class="txt5 color0-hov trans-0-4 m-b-13">
+                                        Vietnamese Hospitality
+                                    </h4></a>
+                                <p class="m-b-20">
+                                    Discover the hospitality and warmth of Vietnamese culture at our restaurant.                                </p>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
     </section>
+
 
     <!-- Our menu -->
     <section class="section-ourmenu bg2-pattern p-t-115 p-b-120">
