@@ -36,7 +36,7 @@ class AuthController extends Controller
         ]);
         if(Auth::attempt($credentials)){
 
-            return redirect()->route('users.index');
+            return redirect()->route('orders.view');
         }
 
         // If login fails, return with an error

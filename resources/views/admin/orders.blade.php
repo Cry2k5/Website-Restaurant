@@ -49,7 +49,7 @@
                         <strong>Bill đã được thanh toán vào lúc {{ $bill->payment_time }}</strong>
                     </div>
                 @else
-                    <div class="table-responsive" style="max-height: 400px; overflow-y: auto;">
+                    <div class="table-responsive" style="max-height: 350px; overflow-y: auto;">
                         <table class="table table-bordered table-striped table-hover" id="cart-items">
                             <thead>
                             <tr>
@@ -95,13 +95,16 @@
                     @endif
                 @endif
 
+                @if ((!$bill || $bill->payment_time) )
+                    <div class="text-center mt-4">
+                        <a href="{{ route('orders.create', ['table_id' => $restaurant_table->table_id]) }}"
+                           class="btn btn-warning">
+                            Add New Bill
+                        </a>
+                    </div>
+                @endif
 
-                <div class="text-center mt-4">
-                    <a href="{{ route('orders.create', ['table_id' => $restaurant_table->table_id]) }}"
-                       class="btn btn-warning">
-                        Add New Bill
-                    </a>
-                </div>
+
             </div>
         </div>
     </div>

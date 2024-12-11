@@ -1,10 +1,13 @@
 <x-admin-base-layout title="Quản lý hóa đơn">
     <div class="main-content" style="padding: 20px;">
-        <h3 class="text-center">Quản lý hóa đơn</h3>
+        <h3>Quản lý hóa đơn</h3>
 
         <!-- Search Input -->
         <div class="d-flex justify-content-between my-3">
-            <input type="text" id="searchInput" class="form-control w-50" placeholder="Tìm kiếm hóa đơn...">
+            <form class="d-flex" action="{{ route('bills.index') }}" method="GET">
+                <input class="form-control mr-sm-2" type="text" name="keyword" placeholder="Search" aria-label="Search" value="{{ request()->query('keyword') }}">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
         </div>
 
         <!-- Table -->

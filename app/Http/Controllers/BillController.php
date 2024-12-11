@@ -13,10 +13,22 @@ class BillController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $bills = Bill::paginate(10);
-        return view('admin.bills',compact('bills'));
+        $keyword = $request->query('keyword');
+
+        // Query the bills based on the keyword if provided
+        $bills = Bill::when($keyword, function ($query, $keyword) {
+            $query->where('bill_id', 'like', "%$keyword%")
+                ->orWhere('reservation_id', 'like', "%$keyword%")
+                ->orWhere('table_id', 'like', "%$keyword%")
+                ->orWhereHas('user', function ($query) use ($keyword) {
+                    $query->where('name', 'like', "%$keyword%");
+                });
+        })->paginate(10);
+
+        // Return the view with the filtered bills
+        return view('admin.bills', compact('bills'));
     }
 
     /**

@@ -1,6 +1,6 @@
 <x-admin-base-layout title="POS - Table Management">
     <div class="container mt-4">
-        <h1 class="text-center mb-4">Table Management</h1>
+        <h3 > Point of sale</h3>
 
         <div class="row">
             <!-- Iterate through tables and display -->

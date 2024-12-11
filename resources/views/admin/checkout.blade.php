@@ -8,7 +8,7 @@
                 <h3>Bill Summary</h3>
             </div>
             <div class="card-body">
-                <div class="table-responsive">
+                <div class="table-responsive" style="max-height: 350px ; overflow-y: auto;">
                     <table class="table table-bordered table-striped">
                         <thead>
                         <tr>
@@ -49,6 +49,8 @@
                 <form action="{{ route('orders.checkout') }}" method="POST">
                     @csrf
                     <input type="hidden" name="bill_id" value="{{ $bill->bill_id }}">
+                    <input type="hidden" name="table_id" value="{{ $restaurant_table->table_id }}">
+
                     <div class="form-group">
                         <label for="payment-method">Select Payment Method:</label>
                         <select id="payment-method" name="payment_method" class="form-control" required>
@@ -60,7 +62,6 @@
 
                     <div class="text-center mt-4">
                         <button type="submit" class="btn btn-success">Confirm Payment</button>
-                        <a href="{{ route('orders.view', ['table_id' => $restaurant_table->table_id]) }}" class="btn btn-secondary">Cancel</a>
                     </div>
                 </form>
                 <div class="text-center mt-4">

@@ -12,13 +12,15 @@ class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable;
-    protected $email_verified_at = null;
     public $timestamps = false;
     protected $fillable = [
         'name', 'email', 'password', 'phone', 'address', 'role',
     ];
 
-
+    public function role()
+    {
+        return $this->role; // Giả sử bạn lưu vai trò trong trường 'role'
+    }
 
     public function bills(): HasMany
     {

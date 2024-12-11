@@ -2,7 +2,10 @@
     <div class="main-content" style="padding: 20px;">
         <h3>Quản lý món ăn</h3>
         <div class="d-flex justify-content-between my-3">
-            <input type="text" id="searchInput" class="form-control w-50" placeholder="Tìm món ăn..." onkeyup="searchDishes()">
+            <form class="d-flex" action="{{ route('dishes.index') }}" method="GET">
+                <input class="form-control mr-sm-2" type="text" name="keyword" placeholder="Search" aria-label="Search" value="{{ request()->query('keyword') }}">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
             <button class="btn btn-success" id="addDishBtn" data-bs-toggle="modal" data-bs-target="#dishModalAdd">Thêm món ăn</button>
         </div>
         <div class="table-responsive">
@@ -48,6 +51,9 @@
         <!-- Pagination -->
         <div class="d-flex justify-content-center">
             {{ $dishes->links() }}
+        </div>
+        <div id="pagination-container" class="d-flex justify-content-center">
+            <!-- Các phân trang sẽ được thêm vào đây -->
         </div>
     </div>
 
@@ -173,35 +179,7 @@
             }
         });
     });
-    // Hàm tìm kiếm món ăn
-{{--    function searchDishes() {--}}
-{{--        const query = document.getElementById('searchInput').value;--}}
-{{--        const url = `/admin/dishes/search?query=${query}`;--}}
-
-{{--        fetch(url)--}}
-{{--            .then(response => response.json())--}}
-{{--            .then(data => {--}}
-{{--                const tableBody = document.getElementById('dishTableBody');--}}
-{{--                tableBody.innerHTML = '';--}}
-{{--                data.dishes.forEach(dish => {--}}
-{{--                    const row = document.createElement('tr');--}}
-{{--                    row.innerHTML = `--}}
-{{--                        <td>${dish.dish_id}</td>--}}
-{{--                        <td>${dish.dish_name}</td>--}}
-{{--                        <td>${dish.cate_name}</td>--}}
-{{--                        <td>${dish.dish_price}</td>--}}
-{{--                        <td><img src="/storage/${dish.image}" width="50"></td>--}}
-{{--                        <td>--}}
-{{--                            <button class="btn btn-warning btn-sm edit-btn" data-bs-toggle="modal" data-bs-target="#dishModalEdit" data-id="${dish.dish_id}">Sửa</button>--}}
-{{--                            <form method="POST" action="/admin/dishes/${dish.dish_id}" style="display:inline;">--}}
-{{--                                @csrf--}}
-{{--                    @method('DELETE')--}}
-{{--                    <button type="submit" class="btn btn-danger btn-sm">Xóa</button>--}}
-{{--                </form>--}}
-{{--            </td>--}}
-{{--`;--}}
-{{--                    tableBody.appendChild(row);--}}
-{{--                });--}}
-{{--            });--}}
-{{--    }--}}
 </script>
+
+
+

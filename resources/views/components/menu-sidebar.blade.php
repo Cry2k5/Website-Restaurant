@@ -17,15 +17,9 @@
     <li class="t-center m-b-13">
         <a href="{{route('home.about')}}" class="txt19">About</a>
     </li>
-
     <li class="t-center m-b-13">
         <a href="{{route('home.blog')}}" class="txt19">Blog</a>
     </li>
-
-    <li class="t-center m-b-33">
-        <a href="{{route('home.contact')}}" class="txt19">Contact</a>
-    </li>
-
     <li class="t-center">
         <!-- Button3 -->
         <a href="{{route('home.reservation')}}" class="btn3 flex-c-m size13 txt11 trans-0-4 m-l-r-auto">

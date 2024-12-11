@@ -3,7 +3,6 @@
         <h3>Quản lý bàn</h3>
 
         <div class="d-flex justify-content-between my-3">
-            <input type="text" id="searchTableInput" class="form-control w-50" placeholder="Search tables...">
             <button class="btn btn-success" id="addTableBtn" data-bs-toggle="modal" data-bs-target="#tableModalAdd">Add Table</button>
         </div>
 

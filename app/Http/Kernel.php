@@ -2,6 +2,7 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\Authenticate;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 use App\Http\Middleware\LoginMiddleware;
 
@@ -41,10 +42,9 @@ class Kernel extends HttpKernel
      * Middleware riêng lẻ.
      */
     protected $routeMiddleware = [
-        'login' => \App\Http\Middleware\LoginMiddleware::class,
-        'auth' => \App\Http\Middleware\Authenticate::class,
-        'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
-        'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
-        'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
+        'login' => LoginMiddleware::class,
+        'admin' => \App\Http\Middleware\AdminMiddleware::class,
+        'staff' => \App\Http\Middleware\StaffMiddleware::class,
     ];
+
 }

@@ -4,7 +4,11 @@
         <h3>Quản lý người dùng</h3>
         <!-- Search and Add User -->
         <div class="d-flex justify-content-between my-3">
-            <input type="text" id="searchInput" class="form-control w-50" placeholder="Search users...">
+            <form class="d-flex" action="{{ route('users.index') }}" method="GET">
+                <input class="form-control mr-sm-2" type="text" name="keyword" placeholder="Search" aria-label="Search" value="{{ request()->query('keyword') }}">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+
             <button class="btn btn-success" id="addUserBtn" data-bs-toggle="modal" data-bs-target="#userModalAdd">Add User</button>
         </div>
         <!-- User Table -->
@@ -179,8 +183,6 @@
                 $('#userPhoneEdit').val(user.phone);
                 $('#userAddressEdit').val(user.address);
                 $('#userRoleEdit').val(user.role);
-
-                // Cập nhật dynamic action của form
                 $('#userFormEdit').attr('action', '/admin/users/' + user.id);
             },
             error: function() {
@@ -188,7 +190,6 @@
             }
         });
     });
-
-
 </script>
+
 

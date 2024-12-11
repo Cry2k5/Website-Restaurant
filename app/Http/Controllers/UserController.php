@@ -16,14 +16,30 @@ class UserController extends Controller
      * Display a listing of the resource.
      */
 
-    public function index()
+    public function index(Request $request)
     {
+        // Khởi tạo truy vấn để bỏ qua user có id = 1
+        $query = User::where('id', '>', 1);
 
-        $users = User::where('id','>',1)
-        ->paginate(10);
+        // Kiểm tra nếu có từ khóa tìm kiếm
+        if (isset($request->keyword) && $request->keyword != '') {
+            // Tìm kiếm trên tất cả các cột bạn muốn, ví dụ: name, email, phone, address
+            $query->where(function ($query) use ($request) {
+                $query->orWhere('name', 'like', '%' . $request->keyword . '%')
+                    ->orWhere('email', 'like', '%' . $request->keyword . '%')
+                    ->orWhere('phone', 'like', '%' . $request->keyword . '%')
+                    ->orWhere('address', 'like', '%' . $request->keyword . '%')
+                    ->orWhere('role', 'like', '%' . $request->keyword . '%');
+            });
+        }
 
-        return view('admin.users',['users'=>$users]);
+        // Thực hiện phân trang kết quả tìm kiếm
+        $users = $query->paginate(10);
+
+        // Trả về view với dữ liệu tìm kiếm
+        return view('admin.users', ['users' => $users]);
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -126,47 +142,15 @@ class UserController extends Controller
 
     public function search(Request $request)
     {
-        $search = $request->input('search');
-
-        // Start the query
-        $query = User::query();
-
-        // Apply search conditions if search term is provided
-        if ($search) {
-            $query->where(function ($query) use ($search) {
-                $query->where('title', 'like', "%{$search}%")
-                    ->orWhere('user_id', 'like', "%{$search}%")
-                    ->orWhere('description', 'like', "%{$search}%")
-                    ->orWhere('date', 'like', "%{$search}%");
-            });
+        $users = User::where('id','>',1)
+            ->paginate(10);
+        if(isset($request->keyword)&&$request->keyword != ''){
+            $users = User::where(
+                'name','like','%'.$request->keyword.'%')->paginate(10);
         }
+        return view('admin.users',['users'=>$users]);
 
-        // Paginate results
-        $users = $query->paginate(10);
-
-        // Return the results as JSON
-        return response()->json([
-            'users' => $users
-        ]);
     }
-
-//    public function search(Request $request)
-//    {
-//        $query = $request->get('search');  // Lấy từ khóa tìm kiếm từ request
-//
-//        $users = User::whereNot('id', 1) // Loại bỏ người dùng có ID = 1
-//        ->where(function ($q) use ($query) {
-//            $q->where('name', 'like', '%' . $query . '%')
-//                ->orWhere('email', 'like', '%' . $query . '%')
-//                ->orWhere('phone', 'like', '%' . $query . '%');
-//        })
-//            ->paginate(10);  // Phân trang kết quả
-//
-//        return response()->json([
-//            'users' => $users,
-//        ]);
-//    }
-//
 
 
 

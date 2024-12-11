@@ -6,7 +6,10 @@
 
         <!-- Search and Add Blog -->
         <div class="d-flex justify-content-between my-3">
-            <input type="text" id="searchBlogInput" class="form-control w-50" placeholder="Search blogs...">
+            <form class="d-flex" action="{{ route('blogs.index') }}" method="GET">
+                <input class="form-control mr-sm-2" type="text" name="keyword" placeholder="Search" aria-label="Search" value="{{ request()->query('keyword') }}">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
             <button class="btn btn-success" id="addBlogBtn" data-bs-toggle="modal" data-bs-target="#blogModalAdd">Add Blog</button>
         </div>
 
@@ -157,53 +160,6 @@
             },
             error: function() {
                 alert("Error fetching blog details.");
-            }
-        });
-    });
-
-    // Tìm kiếm bài viết
-    $('#searchBlogInput').on('keyup', function () {
-        const query = $(this).val(); // Lấy từ khóa tìm kiếm
-
-        $.ajax({
-            url: '{{ route('blogs.search') }}', // URL tìm kiếm bài viết
-            method: 'GET',
-            data: { search: query }, // Gửi từ khóa tìm kiếm
-            success: function(response) {
-                // Cập nhật bảng với dữ liệu tìm kiếm
-                const tableBody = $('#blogTableBody');
-                tableBody.empty();  // Xóa dữ liệu cũ
-
-                response.blogs.data.forEach(function(blog) {
-                    const row = `<tr>
-                        <td>${blog.id}</td>
-                        <td>${blog.title}</td>
-                        <td>${blog.user?.name ?? 'Unknown'}</td>
-                        <td>${blog.description.slice(0, 50)}...</td>
-                        <td>${blog.date}</td>
-                        <td>
-                            ${blog.image ? `<img src="${asset(blog.image)}" alt="Image" width="50">` : 'No Image'}
-                        </td>
-                        <td>
-                            <button class="btn btn-warning btn-sm edit-btn" data-bs-toggle="modal" data-bs-target="#blogModalEdit" data-id="${blog.id}">Edit</button>
-                            <form method="POST" action="/admin/blogs/${blog.id}" style="display:inline;" class="delete-form">
-                                @csrf
-                    @method('DELETE')
-                    <button type="submit" class="btn btn-danger btn-sm">Delete</button>
-                </form>
-            </td>
-        </tr>`;
-                    tableBody.append(row);
-                });
-
-                // Cập nhật phân trang (nếu có)
-                const pagination = $('.pagination');
-                pagination.empty();  // Xóa phân trang cũ
-                response.blogs.links.forEach(function(link) {
-                    if (link.url) {
-                        pagination.append(`<li class="page-item"><a class="page-link" href="${link.url}">${link.label}</a></li>`);
-                    }
-                });
             }
         });
     });

@@ -11,13 +11,33 @@ use Illuminate\Support\Facades\Storage;
 class DishController extends Controller
 {
     // Hiển thị danh sách các món ăn
-    public function index()
+    public function index(Request $request)
     {
-        $categories = Category::all(); // Fetch all categories
-        // Lấy tất cả các món ăn
-        $dishes = Dish::with(['category'])->paginate(10);  // Bao gồm cả thông tin về category
-        return view('admin.dishes',compact('dishes','categories'));  // Trả về view với danh sách món ăn
+        // Khởi tạo truy vấn để lấy tất cả món ăn, bao gồm thông tin danh mục
+        $query = Dish::with('category');  // Lấy tất cả món ăn và kèm theo thông tin danh mục (category)
+
+        // Kiểm tra nếu có từ khóa tìm kiếm
+        if (isset($request->keyword) && $request->keyword != '') {
+            // Tìm kiếm trong tên món ăn, mô tả món ăn, và tên danh mục
+            $query->where(function ($query) use ($request) {
+                // Tìm kiếm trong 'dish_name' của bảng dishes
+                $query->orWhere('dish_name', 'like', '%' . $request->keyword . '%')
+                    ->orWhereHas('category', function($query) use ($request) {
+                        $query->where('cate_name', 'like', '%' . $request->keyword . '%');  // Sửa thành đúng tên cột của bạn
+                    });
+            });
+        }
+
+        // Phân trang kết quả tìm kiếm
+        $dishes = $query->paginate(10);
+
+        // Lấy tất cả danh mục để hiển thị trong sidebar hoặc để lọc
+        $categories = Category::all();
+
+        // Trả về view với danh sách món ăn và danh mục
+        return view('admin.dishes', compact('dishes', 'categories'));
     }
+
 
     // Lưu món ăn mới
     public function store(Request $request)
@@ -85,31 +105,5 @@ class DishController extends Controller
         return redirect()->route('dishes.index')->with('success', 'Dish deleted successfully.');
     }
 
-    // Tìm kiếm món ăn
-    public function search(Request $request)
-    {
-        $search = $request->input('search');
 
-        // Bắt đầu truy vấn
-        $query = Dish::query();
-
-        // Áp dụng điều kiện tìm kiếm
-        if ($search) {
-            $query->where(function ($query) use ($search) {
-                $query->where('dish_name', 'like', "%{$search}%")
-                    ->orWhere('dish_price', 'like', "%{$search}%")
-                    ->orWhereHas('category', function ($query) use ($search) {
-                        $query->where('cate_name', 'like', "%{$search}%");
-                    });
-            });
-        }
-
-        // Phân trang kết quả
-        $dishes = $query->paginate(10);
-
-        // Trả về kết quả tìm kiếm dưới dạng JSON
-        return response()->json([
-            'dishes' => $dishes
-        ]);
-    }
 }

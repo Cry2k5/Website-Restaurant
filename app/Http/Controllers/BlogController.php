@@ -12,11 +12,20 @@ use Illuminate\Support\Facades\Storage;
 class BlogController extends Controller
 {
 
-    public function index()
+    public function index(Request $request)
     {
+        $query =  Blog::with('user');
 
-//        $user = User::find(2);
-        $blogs = Blog::with('user')->paginate(10); // Lấy tất cả bài viết
+        if (isset($request->keyword) && $request->keyword != '') {
+            $query->where(function ($query) use ($request) {
+                $query->orWhere('title', 'like', '%' . $request->keyword . '%')
+                    ->orWhere('description', 'like', '%' . $request->keyword . '%')
+                    ->orWhereHas('user', function($query) use ($request) {
+                        $query->where('name', 'like', '%' . $request->keyword . '%');  // Sửa thành đúng tên cột của bạn
+                    });
+            });
+        }
+        $blogs = $query->paginate(10);
         return view('admin.blogs', compact('blogs')); // Trả về view với danh sách bài viết
     }
 

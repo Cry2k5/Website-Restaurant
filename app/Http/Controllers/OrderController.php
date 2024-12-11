@@ -12,22 +12,23 @@ use function Laravel\Prompts\table;
 
 class OrderController extends Controller
 {
-    // Tạo hóa đơn mới cho bàn và chuyển hướng tới trang chi tiết
     public function create(Request $request)
     {
-        // Lấy table_id từ request
         $table_id = $request->input('table_id');
 
+        // Kiểm tra xem table_id có tồn tại hay không
+        $table = RestaurantTable::find($table_id);
         // Tạo một hóa đơn mới
         $bill = Bill::create([
             'reservation_id' => null,
             'table_id' => $table_id,
-            'user_id' => auth()->user()->id, // Liên kết với người dùng hiện tại
-            'bill_time' => now(), // Thời gian tạo hóa đơn
-            'payment_method' => null, // Có thể thay đổi
+            'user_id' => auth()->user()->id,
+            'bill_time' => now(),
+            'payment_method' => null,
         ]);
-
-        // Chuyển hướng đến trang chi tiết hóa đơn
+        $table->update([
+            'state' => 'unavailable',
+        ]);
         return redirect()->route('orders.index', ['table_id' => $table_id, 'bill_id' => $bill->bill_id])->with('success', 'Tạo hóa đơn mới thành công!!');
     }
 
@@ -182,6 +183,9 @@ class OrderController extends Controller
             'bill_id' => 'required|integer|exists:bills,bill_id', // Đảm bảo bill_id tồn tại
             'payment_method' => 'required|string', // Đảm bảo có phương thức thanh toán
         ]);
+        $table_id = $request->input('table_id');
+
+        $table = RestaurantTable::find($table_id);
 
         // Lấy bill_id
         $bill = Bill::find($request->bill_id);
@@ -194,6 +198,9 @@ class OrderController extends Controller
         $bill->payment_time = now();
         $bill->payment_method = $request->payment_method; // Lưu phương thức thanh toán (nếu có cột này trong bảng)
         $bill->save();
+        $table->update([
+           'state' => 'available'
+        ]);
 
         return redirect()->route('orders.view')->with('success', 'Payment completed successfully!');
     }
