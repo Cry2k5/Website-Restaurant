@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BillController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\DishController;
+use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ReservationController;
@@ -39,7 +40,6 @@ Route::post('/admin/change-password', [AuthController::class, 'changePassword'])
 //dành cho Staff
 Route::prefix('admin')->middleware(StaffMiddleware::class)->group(function () {
 
-    // Các route liên quan đến quản lý bàn
     Route::get('/tables', [TableController::class, 'index'])->name('tables.index');
     Route::get('/tables/{table_id}', [TableController::class, 'edit'])->name('tables.edit');
     Route::put('/tables/{table_id}', [TableController::class, 'update'])->name('tables.update');
@@ -48,16 +48,13 @@ Route::prefix('admin')->middleware(StaffMiddleware::class)->group(function () {
     Route::get('/tables/search', [TableController::class, 'search'])->name('tables.search');
     Route::delete('/tables/{table_id}', [TableController::class, 'destroy'])->name('tables.destroy');
 
-    // Các route liên quan đến quản lý blog
     Route::get('/blogs', [BlogController::class, 'index'])->name('blogs.index');
     Route::get('/blogs/{blog}', [BlogController::class, 'edit'])->name('blogs.edit');
     Route::put('/blogs/{blog}', [BlogController::class, 'update'])->name('blogs.update');
     Route::get('/blogs/create', [BlogController::class, 'create'])->name('blogs.create');
     Route::post('/blogs/store', [BlogController::class, 'store'])->name('blogs.store');
-//    Route::get('/blogs/search', [BlogController::class, 'search'])->name('blogs.search');
     Route::delete('/blogs/{blog}', [BlogController::class, 'destroy'])->name('blogs.destroy');
 
-    // Các route liên quan đến quản lý ban hàng
     Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
     Route::get('/orders/create', [OrderController::class, 'create'])->name('orders.create');
     Route::post('/orders/add', [OrderController::class, 'addToCart'])->name('orders.add');
@@ -68,14 +65,19 @@ Route::prefix('admin')->middleware(StaffMiddleware::class)->group(function () {
     Route::get('/orders/print/{bill_id}', [OrderController::class, 'printInvoice'])->name('orders.print');
     Route::get('/pos', [OrderController::class, 'posIndex'])->name('orders.view');
 
-    // Các route liên quan đến món ăn
     Route::get('/dishes', [DishController::class, 'index'])->name('dishes.index');
     Route::get('/dishes/{dish_id}', [DishController::class, 'edit'])->name('dishes.edit');
     Route::put('/dishes/{dish_id}', [DishController::class, 'update'])->name('dishes.update');
     Route::get('/dishes/create', [DishController::class, 'create'])->name('dishes.create');
     Route::post('/dishes/store', [DishController::class, 'store'])->name('dishes.store');
-//    Route::get('/dishes/search', [DishController::class, 'search'])->name('dishes.search');
     Route::delete('/dishes/{dish_id}', [DishController::class, 'destroy'])->name('dishes.destroy');
+
+    Route::get('/galleries', [GalleryController::class, 'index'])->name('galleries.index');
+    Route::get('/galleries/{gallery}', [GalleryController::class, 'edit'])->name('galleries.edit');
+    Route::put('/galleries/{gallery}', [GalleryController::class, 'update'])->name('galleries.update');
+    Route::get('/galleries/create', [GalleryController::class, 'create'])->name('galleries.create');
+    Route::post('/galleries/store', [GalleryController::class, 'store'])->name('galleries.store');
+    Route::delete('/galleries/{gallery}', [GalleryController::class, 'destroy'])->name('galleries.destroy');
 });
 
 // Các route chỉ dành cho admin

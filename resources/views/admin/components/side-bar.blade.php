@@ -17,6 +17,13 @@
     <!-- Danh sách chức năng -->
     <ul>
         <!-- Sidebar Menu -->
+
+        <li class="nav-item mb-2">
+            <a href="{{ route('orders.view') }}" class="nav-link text-white">Quản lý bán hàng</a>
+        </li>
+        <li class="nav-item mb-2">
+            <a href="{{route('bills.index')}}" class="nav-link text-white">Quản lý hóa đơn</a>
+        </li>
         <li class="nav-item mb-2">
             <a href="{{ route('users.index') }}" class="nav-link text-white">Quản lý người dùng</a>
         </li>
@@ -27,13 +34,10 @@
             <a href="{{ route('tables.index') }}" class="nav-link text-white">Quản lý bàn</a>
         </li>
         <li class="nav-item mb-2">
-            <a href="{{ route('orders.view') }}" class="nav-link text-white">Quản lý bán hàng</a>
-        </li>
-        <li class="nav-item mb-2">
             <a href="{{ route('dishes.index') }}" class="nav-link text-white">Quản lý món ăn</a>
         </li>
         <li class="nav-item mb-2">
-            <a href="{{route('bills.index')}}" class="nav-link text-white">Quản lý hóa đơn</a>
+            <a href="{{route('galleries.index')}}" class="nav-link text-white">Quản lý thư viện ảnh</a>
         </li>
 
     </ul>
