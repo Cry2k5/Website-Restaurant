@@ -1,7 +1,6 @@
 <x-admin-base-layout title="POS - Table Management">
-    <div class="container mt-4">
+    <div class="main-content"  style="padding: 20px;">
         <h3 > Point of sale</h3>
-
         <div class="row">
             <!-- Iterate through tables and display -->
             @foreach($restaurant_tables as $table)

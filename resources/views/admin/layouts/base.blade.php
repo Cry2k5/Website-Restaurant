@@ -16,37 +16,65 @@
             height: 100vh;
             margin: 0;
         }
+
         .sidebar {
-            min-width: 250px;
-            max-width: 250px;
+            width: 250px;
             background-color: #343a40;
             color: white;
             display: flex;
             flex-direction: column;
-            align-items: center;
+            align-items: stretch; /* Căn đều các phần tử */
+            padding: 20px 0; /* Tăng khoảng cách trên dưới */
+            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1); /* Thêm bóng đổ cho sidebar */
         }
+
         .sidebar ul {
             list-style: none;
             padding: 0;
             width: 100%;
         }
+
         .sidebar li {
             padding: 15px;
-            text-align: center;
+            text-align: left; /* Căn trái văn bản */
             cursor: pointer;
-            transition: background 0.3s;
+            transition: background 0.3s ease, transform 0.2s ease;
+            border-bottom: 1px solid #495057; /* Thêm đường viền dưới mỗi mục */
+            padding-left: 20px; /* Thêm khoảng cách bên trái để văn bản không quá sát lề */
         }
+
         .sidebar li:hover {
             background-color: #495057;
+            transform: scale(1.05); /* Tăng nhẹ khi hover để có cảm giác tương tác */
         }
+
         .sidebar li.active {
             background-color: #007bff;
         }
+
+        .sidebar li.active:hover {
+            background-color: #0056b3; /* Đổi màu khi hover trên mục đang chọn */
+        }
+
+        .sidebar li:last-child {
+            border-bottom: none; /* Xóa đường viền dưới cùng */
+        }
+
+        .sidebar .logo {
+            text-align: center;
+            margin-bottom: 30px; /* Khoảng cách logo và các mục dưới */
+            font-size: 24px;
+            font-weight: bold;
+            color: #ffffff;
+        }
+
         .main-content {
             flex-grow: 1;
             padding: 20px;
             background: #f8f9fa;
         }
+
+        /* Phân trang */
         .pagination {
             justify-content: center; /* Căn giữa phân trang */
             margin-top: 20px; /* Khoảng cách từ bảng lên phân trang */
@@ -88,6 +116,8 @@
             border-top-right-radius: 5px;
             border-bottom-right-radius: 5px;
         }
+
+
     </style>
 </head>
 <body>

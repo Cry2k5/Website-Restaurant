@@ -25,6 +25,7 @@ class BlogController extends Controller
                     });
             });
         }
+        $query->orderBy('date', 'desc');
         $blogs = $query->paginate(10);
         return view('admin.blogs', compact('blogs')); // Trả về view với danh sách bài viết
     }

@@ -14,7 +14,7 @@ class HomeController extends Controller
         // Lấy 3 bài viết mới nhất từ BlogController
         $blogs = Blog::with('user')  // Eager load bảng 'user'
         ->orderBy('date', 'desc') // Sắp xếp bài viết theo ngày giảm dần
-        ->take(3)                 // Lấy 3 bài viết mới nhất
+        ->take(2)                 // Lấy 3 bài viết mới nhất
         ->get();                  // Thực thi truy vấn và lấy kết quả
 
         // Trả về view 'home.index' và truyền dữ liệu blogs
@@ -40,17 +40,15 @@ class HomeController extends Controller
     public function about(){
         return view('home.about');
     }
-    public function blog(){
-        {
-        // Lấy tất cả các bài viết với thông tin người đăng (eager load user)
-        $blogs = Blog::with('user')->paginate(3);
-
+    public function blog()
+    {
+        // Lấy tất cả các bài viết với thông tin người đăng, sắp xếp bài mới nhất trước
+        $blogs = Blog::with('user')->orderBy('date', 'desc')->paginate(10);
 
         // Trả về view và truyền dữ liệu bài viết
         return view('home.blog', compact('blogs'));
+    }
 
-    }
-    }
     public function contact(){
     return view('home.contact');
     }

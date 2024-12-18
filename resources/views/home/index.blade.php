@@ -77,7 +77,7 @@
                 <div class="col-md-6 p-t-45 p-b-30">
                     <div class="wrap-text-welcome t-center">
 						<span class="tit2 t-center">
-							Italian Restaurant
+							Viet Nam Restaurant
 						</span>
 
                         <h3 class="tit3 t-center m-b-35 m-t-5">

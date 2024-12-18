@@ -1,6 +1,6 @@
 @php use Illuminate\Support\Facades\Request; @endphp
 <x-admin-base-layout title="Order Page">
-    <div class="container mt-4">
+    <div class="main-content"  style="padding: 20px;">
         <h1 class="text-center mb-4">Order for Table {{ $restaurant_table->table_id }}</h1>
         <div class="row">
             <!-- Menu -->
