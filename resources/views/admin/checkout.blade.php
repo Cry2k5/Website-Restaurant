@@ -1,5 +1,5 @@
 <x-admin-base-layout title="Checkout Page">
-    <div class="container mt-4">
+    <div class="main-content">
         <h1 class="text-center mb-4">Checkout for Table {{ $restaurant_table->table_id }}</h1>
 
         <!-- Bill Summary -->
@@ -55,8 +55,7 @@
                         <label for="payment-method">Select Payment Method:</label>
                         <select id="payment-method" name="payment_method" class="form-control" required>
                             <option value="cash">Cash</option>
-                            <option value="credit_card">Credit Card</option>
-                            <option value="paypal">PayPal</option>
+                            <option value="vnpay">VN PayPay</option>
                         </select>
                     </div>
 

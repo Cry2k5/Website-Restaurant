@@ -112,38 +112,45 @@
 
 <script>
     $('.add-to-cart').on('click', function () {
-        var dishId = $(this).data('dish-id'); // Lấy dish_id từ data attribute
-        var quantity = $(this).closest('tr').find('.quantity').val(); // Lấy số lượng từ input
-        var billId = '{{ $bill ? $bill->bill_id : null }}'; // Lấy bill_id từ server nếu có
+    var dishId = $(this).data('dish-id'); // Lấy dish_id từ data attribute
+    var quantity = $(this).closest('tr').find('.quantity').val(); // Lấy số lượng từ input
+    var billId = '{{ $bill ? $bill->bill_id : null }}'; // Lấy bill_id từ server nếu có
 
-        if (!billId) {
-            alert('No active bill for this table. Please create a bill first.');
-            return;
-        }
+    // Kiểm tra nếu hóa đơn đã thanh toán
+    var paymentTime = '{{ $bill && $bill->payment_time ? $bill->payment_time : null }}';
+    if (paymentTime) {
+        alert('This bill has already been paid. You cannot add more items.');
+        return;
+    }
 
-        $.ajax({
-            url: '{{ route('orders.add') }}', // Route xử lý yêu cầu
-            method: 'POST',
-            data: {
-                _token: '{{ csrf_token() }}', // CSRF token để bảo mật
-                dish_id: dishId, // ID món ăn
-                quantity: quantity, // Số lượng món
-                bill_id: billId // ID hóa đơn
-            },
-            success: function (response) {
-                // Cập nhật giao diện nếu thêm thành công
-                location.reload(); // Reload lại trang
-            },
-            error: function (response) {
-                // Hiển thị thông báo lỗi
-                if (response.status === 422) {
-                    alert('Validation error: ' + response.responseJSON.message);
-                } else {
-                    alert('Error adding to cart');
-                }
+    if (!billId) {
+        alert('No active bill for this table. Please create a bill first.');
+        return;
+    }
+
+    $.ajax({
+        url: '{{ route('orders.add') }}',
+        method: 'POST',
+        data: {
+            _token: '{{ csrf_token() }}',
+            dish_id: dishId,
+            quantity: quantity,
+            bill_id: billId
+        },
+        success: function (response) {
+            // Cập nhật giao diện nếu thêm thành công
+            location.reload(); // Reload lại trang
+        },
+        error: function (response) {
+            if (response.status === 422) {
+                alert('Validation error: ' + response.responseJSON.message);
+            } else {
+                alert('Error adding to cart');
             }
-        });
+        }
     });
+});
+
 
     $('.delete-item').on('click', function () {
         var dishId = $(this).data('dish-id');  // Lấy dish_id từ thuộc tính data-dish-id của nút xóa.

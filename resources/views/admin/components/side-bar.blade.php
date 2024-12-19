@@ -17,7 +17,9 @@
     <!-- Danh sách chức năng -->
     <ul>
         <!-- Sidebar Menu -->
-
+        <li class="nav-item mb-2">
+            <a href="{{route('dashboard')}}" class="nav-link text-white">Dashboard</a>
+        </li>
         <li class="nav-item mb-2">
             <a href="{{ route('orders.view') }}" class="nav-link text-white">Quản lý bán hàng</a>
         </li>
@@ -39,6 +41,7 @@
         <li class="nav-item mb-2">
             <a href="{{route('galleries.index')}}" class="nav-link text-white">Quản lý thư viện ảnh</a>
         </li>
+        
 
     </ul>
 

@@ -13,6 +13,8 @@ use App\Http\Controllers\UserController;
 use App\Http\Middleware\AdminMiddleware;
 use App\Http\Middleware\StaffMiddleware;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DashboardController;
+
 
 // Các route cho frontend
 Route::get('/', [HomeController::class, 'home'])->name('home.index');
@@ -39,6 +41,19 @@ Route::post('/admin/change-password', [AuthController::class, 'changePassword'])
 
 //dành cho Staff
 Route::prefix('admin')->middleware(StaffMiddleware::class)->group(function () {
+    
+    Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
+    Route::get('/orders/create', [OrderController::class, 'create'])->name('orders.create');
+    Route::post('/orders/add', [OrderController::class, 'addToCart'])->name('orders.add');
+    Route::post('/orders/update', [OrderController::class, 'updateCart'])->name('orders.update');
+    Route::post('/orders/remove', [OrderController::class, 'removeFromCart'])->name('orders.remove');
+    Route::get('/orders/checkout', [OrderController::class, 'showCheckout'])->name('orders.showCheckout');
+    Route::post('/orders/checkout', [OrderController::class, 'checkout'])->name('orders.checkout');
+    Route::get('/orders/vnpay-return', [OrderController::class, 'vnpayReturn'])->name('orders.vnpay_return');
+
+    Route::get('/orders/print/{bill_id}', [OrderController::class, 'printInvoice'])->name('orders.print');
+    Route::get('/pos', [OrderController::class, 'posIndex'])->name('orders.view');
+
 
     Route::get('/tables', [TableController::class, 'index'])->name('tables.index');
     Route::get('/tables/{table_id}', [TableController::class, 'edit'])->name('tables.edit');
@@ -54,16 +69,6 @@ Route::prefix('admin')->middleware(StaffMiddleware::class)->group(function () {
     Route::get('/blogs/create', [BlogController::class, 'create'])->name('blogs.create');
     Route::post('/blogs/store', [BlogController::class, 'store'])->name('blogs.store');
     Route::delete('/blogs/{blog}', [BlogController::class, 'destroy'])->name('blogs.destroy');
-
-    Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
-    Route::get('/orders/create', [OrderController::class, 'create'])->name('orders.create');
-    Route::post('/orders/add', [OrderController::class, 'addToCart'])->name('orders.add');
-    Route::post('/orders/update', [OrderController::class, 'updateCart'])->name('orders.update');
-    Route::post('/orders/remove', [OrderController::class, 'removeFromCart'])->name('orders.remove');
-    Route::get('/orders/checkout', [OrderController::class, 'showCheckout'])->name('orders.showCheckout');
-    Route::post('/orders/checkout', [OrderController::class, 'checkout'])->name('orders.checkout');
-    Route::get('/orders/print/{bill_id}', [OrderController::class, 'printInvoice'])->name('orders.print');
-    Route::get('/pos', [OrderController::class, 'posIndex'])->name('orders.view');
 
     Route::get('/dishes', [DishController::class, 'index'])->name('dishes.index');
     Route::get('/dishes/{dish_id}', [DishController::class, 'edit'])->name('dishes.edit');
@@ -95,4 +100,7 @@ Route::prefix('admin')->middleware([AdminMiddleware::class])->group(function () 
     // Các route liên quan đến các phần còn lại của hệ thống
     Route::get('/bills', [BillController::class, 'index'])->name('bills.index');
     Route::delete('/bills/{bill}', [BillController::class, 'destroy'])->name('bills.destroy');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
 });
+    // Route::post('/vnpay_paymant', [OrderController::class, 'checkout'])->name('orders.checkout');

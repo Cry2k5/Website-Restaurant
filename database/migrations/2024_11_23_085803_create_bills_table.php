@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('payment_method')->nullable();
             $table->dateTime('bill_time')->nullable();
             $table->dateTime('payment_time')->nullable();
+            $table->double('total')->nullable();
             $table->timestamp('deleted_at')->nullable();
         });
     }

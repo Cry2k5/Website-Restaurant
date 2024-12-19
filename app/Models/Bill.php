@@ -21,6 +21,7 @@ class Bill extends Model
         'table_id',
         'payment_method',
         'bill_time',
+        'total',
         'deleted_at',
     ];
 
